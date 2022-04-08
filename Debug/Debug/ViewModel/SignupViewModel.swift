@@ -10,12 +10,13 @@ import Foundation
 class SignupViewModel: ObservableObject {
     @Published var isSignup = false
     
+    var name = ""
     var username = ""
     var password = ""
     
     func signup() {
         
-        Webservice().signup(username: username, password: password) { result in
+        Webservice().signup(name: name, username: username, password: password) { result in
             
             switch result {
             case .success(let message):

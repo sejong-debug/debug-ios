@@ -14,64 +14,76 @@ struct LoginView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
                 if loginPossibility == false {
-                    VStack {
+                    ZStack {
                         VStack {
-                            Text("나만의")
-                                .offset(x: -100, y: -50)
-                            Text("농작물")
-                                .offset(x: -100, y: -50)
-                            Text("관리")
-                                .offset(x: -120, y: -50)
-                        }
-                        .foregroundColor(.green)
-                        .font(.system(size: 50))
-                        TextField("아이디", text: $loginVM.username)
-                            .textFieldStyle(.roundedBorder)
-                            .padding(.vertical)
-                        TextField("비밀번호", text: $loginVM.password)
-                            .textFieldStyle(.roundedBorder)
-                        
-                        HStack {
-                            Spacer()
-                            Button {
-                                showingSignUpView = true
-                            } label: {
-                                Text("회원가입")
-                                    .foregroundColor(.gray)
-                            }
-                            .sheet(isPresented: $showingSignUpView) {
-                                SignupView()
-                            }
-                        }
-                        
-                        Button {
-                            //로그인 action
-                            loginVM.login()
-                            Task {
-                                withAnimation {
-                                    loginPossibility = loginVM.isLogin
+                            VStack() {
+                                HStack {
+                                    Text("나만의")
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("농작물")
+                                    Spacer()
+                                }
+                                HStack {
+                                    Text("관리")
+                                    Spacer()
                                 }
                             }
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5)
-                                    .foregroundColor(.green)
-                                Text("로그인")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.bold)
+                            .padding(.leading, 20)
+                            .foregroundColor(.green)
+                            .font(.system(size: 50))
+                            TextField("아이디", text: $loginVM.username)
+                                .textFieldStyle(.roundedBorder)
+                                .padding(.vertical)
+                            TextField("비밀번호", text: $loginVM.password)
+                                .textFieldStyle(.roundedBorder)
+                            
+                            HStack {
+                                Spacer()
+                                Button {
+                                    withAnimation {
+                                        showingSignUpView = true
+                                    }
+                                } label: {
+                                    Text("회원가입")
+                                        .foregroundColor(.gray)
+                                }
+                                .sheet(isPresented: $showingSignUpView) {
+                                    SignupView()
+                                }
                             }
+                            
+                            Button {
+                                //로그인 action
+                                loginVM.login()
+                                Task {
+                                    withAnimation {
+                                        loginPossibility = loginVM.isLogin
+                                    }
+                                }
+                            } label: {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .foregroundColor(.green)
+                                    Text("로그인")
+                                        .foregroundColor(.white)
+                                        .fontWeight(.bold)
+                                }
+                            }
+                            .frame( height: 45)
+                            Spacer()
                         }
-                        .frame( height: 45)
-                        Spacer()
+                        .padding()
                     }
-                    .padding()
                 } else {
-                    ProjectListView(possibility: $loginPossibility)
+                    withAnimation {
+                        ProjectListView()
+                    }
                 }
-            }//ZStac
         }
+        .navigationBarHidden(true)
         .onAppear {
             withAnimation {
                 loginPossibility = false

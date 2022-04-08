@@ -14,8 +14,14 @@ struct SignupView: View {
     var body: some View {
         VStack {
             HStack {
+                Text("이름 설정")
+                Spacer()
+            }
+            TextField("이름", text: $signupVM.name)
+                .textFieldStyle(.roundedBorder)
+                
+            HStack {
                 Text("아이디 설정")
-                    .fontWeight(.medium)
                 Spacer()
             }
             TextField("아이디", text: $signupVM.username)
@@ -23,7 +29,6 @@ struct SignupView: View {
                 
             HStack {
                 Text("비밀번호 설정")
-                    .fontWeight(.medium)
                 Spacer()
             }
             TextField("비밀번호", text: $signupVM.password)

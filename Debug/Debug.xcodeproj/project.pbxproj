@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */; };
+		EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */; };
+		EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5227F588D200648A5B /* ProjectListResponse.swift */; };
+		EABE8D5527F595A900648A5B /* IssueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* IssueView.swift */; };
 		EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FB27ED814A00F6E730 /* DebugApp.swift */; };
 		EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FD27ED814A00F6E730 /* LoginView.swift */; };
 		EAC5130027ED814B00F6E730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC512FF27ED814B00F6E730 /* Assets.xcassets */; };
@@ -16,9 +20,15 @@
 		EAC5131127EDA08300F6E730 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131027EDA08300F6E730 /* SignupViewModel.swift */; };
 		EAC5131327EDA21D00F6E730 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131227EDA21D00F6E730 /* LoginViewModel.swift */; };
 		EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131427EDB07000F6E730 /* ProjectListView.swift */; };
+		EAD7F9D727F6C6740031BC32 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */; };
+		EAD7F9D927F6D6140031BC32 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7F9D827F6D6140031BC32 /* SessionToken.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
+		EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequestBody.swift; sourceTree = "<group>"; };
+		EABE8D5227F588D200648A5B /* ProjectListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListResponse.swift; sourceTree = "<group>"; };
+		EABE8D5427F595A900648A5B /* IssueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueView.swift; sourceTree = "<group>"; };
 		EAC512F827ED814A00F6E730 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC512FB27ED814A00F6E730 /* DebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugApp.swift; sourceTree = "<group>"; };
 		EAC512FD27ED814A00F6E730 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -29,6 +39,8 @@
 		EAC5131027EDA08300F6E730 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
 		EAC5131227EDA21D00F6E730 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EAC5131427EDB07000F6E730 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		EAD7F9D827F6D6140031BC32 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +54,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EABE8D4D27F587B000648A5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */,
+				EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */,
+				EAD7F9D827F6D6140031BC32 /* SessionToken.swift */,
+				EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */,
+				EABE8D5227F588D200648A5B /* ProjectListResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		EAC512EF27ED814A00F6E730 = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				EAC512FB27ED814A00F6E730 /* DebugApp.swift */,
+				EABE8D4D27F587B000648A5B /* Model */,
 				EAC5130F27EDA05300F6E730 /* ViewModel */,
 				EAC5130C27ED92EC00F6E730 /* Services */,
 				EAC5130927ED8B2600F6E730 /* View */,
@@ -85,6 +110,7 @@
 				EAC512FD27ED814A00F6E730 /* LoginView.swift */,
 				EAC5130A27ED8BB600F6E730 /* SignupView.swift */,
 				EAC5131427EDB07000F6E730 /* ProjectListView.swift */,
+				EABE8D5427F595A900648A5B /* IssueView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -177,10 +203,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */,
+				EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */,
+				EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */,
+				EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */,
+				EAD7F9D727F6C6740031BC32 /* LoginResponse.swift in Sources */,
 				EAC5131127EDA08300F6E730 /* SignupViewModel.swift in Sources */,
+				EAD7F9D927F6D6140031BC32 /* SessionToken.swift in Sources */,
 				EAC5131327EDA21D00F6E730 /* LoginViewModel.swift in Sources */,
 				EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */,
 				EAC5130E27ED936500F6E730 /* Webservice.swift in Sources */,
+				EABE8D5527F595A900648A5B /* IssueView.swift in Sources */,
 				EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */,
 				EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */,
 			);
