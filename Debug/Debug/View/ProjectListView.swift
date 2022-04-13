@@ -12,9 +12,9 @@ struct ProjectListView: View {
     @State private var showingIssueAlert = false
     @State var logoutPossibility = false
     @State var issuePossibility = false
-    @State var projectList: [ProjectListResponse] = [ProjectListResponse(name: "testname", startDate: Date(), endDate: Date(), cropType: "팥", error: nil),ProjectListResponse(name: "hello", startDate: Date(), endDate: Date(), cropType: "콩", error: nil)]
+    @State var projectList: [ProjectListResponse] = [ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.10", cropType: "팥", error: nil),ProjectListResponse(name: "hello", startDate: "2020.01.15", endDate: "2020.01.30", cropType: "콩", error: nil),ProjectListResponse(name: "hello", startDate: "2021.01.12", endDate: "2021.11.12", cropType: "참깨", error: nil)]
 //    @State var projectList: [ProjectListResponse] = []
-    
+    //실제로 ProjectListView 등장할때 onappear를 통해 projectList를 서버에서 받아와야함
     let sesame = Image("참깨 이모지")
     let adzukiBeans = Image("팥 이모지")
     let bean = Image("콩 이모지")
@@ -30,7 +30,6 @@ struct ProjectListView: View {
     func selectCropType(_ cropType: String) -> some View {
         
         if cropType == "팥" {
-            
             return   adzukiBeans
                 .resizable()
                 .frame(width: 60, height: 60)
@@ -80,33 +79,39 @@ struct ProjectListView: View {
                     .font(.system(size: 40))
                 if !projectList.isEmpty {
                     Rectangle()
-                        .frame(height: 5)
+                        .frame(height: 3)
                         .foregroundColor(Color(hue: 0.054, saturation: 0.0, brightness: 0.724))
                     ScrollView {
                         VStack(spacing: 20) {
                             ForEach(projectList, id:\.self) { project in
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .foregroundColor(Color(red: 0.969, green: 0.969, blue: 0.969))
-                                        .frame(height: 80)
-                                        .shadow(color: .gray, radius: 1, x: 0, y: 5)
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .stroke(lineWidth: 1)
-                                        .foregroundColor(.gray)
-                                        .frame(height: 80)
+                                NavigationLink {
+                                    Text(project.name ?? "")
+                                } label: {
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .foregroundColor(Color(red: 0.969, green: 0.969, blue: 0.969))
+                                            .frame(height: 80)
+                                            .shadow(color: .gray, radius: 1, x: 0, y: 5)
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .stroke(lineWidth: 1)
+                                            .foregroundColor(.gray)
+                                            .frame(height: 80)
 
-                                    HStack {
-                                        VStack (alignment: .leading) {
-                                            Text(project.name ?? "no title")
-                                            Text("작물: \(project.cropType ?? "no data")")
+                                        HStack {
+                                            VStack (alignment: .leading) {
+                                                Text(project.name ?? "no title")
+                                                Text("작물: \(project.cropType ?? "no data")")
+                                                Text("\(project.startDate ?? "") ~ \(project.endDate ?? "")")
+                                            }
+                                            .foregroundColor(.black)
+                                            .font(.system(size: 15))
+                                            Spacer()
+                                            if let cropType = project.cropType {
+                                                selectCropType(cropType)
+                                            }
                                         }
-                                        .font(.system(size: 25))
-                                        Spacer()
-                                        if let cropType = project.cropType {
-                                            selectCropType(cropType)
-                                        }
-                                    }
-                                    .padding()
+                                        .padding()
+                                        }//ZStack
                                     }
                                 }
                             }
@@ -115,7 +120,7 @@ struct ProjectListView: View {
                     .padding(.horizontal)
                 } else {
                     Rectangle()
-                        .frame(height: 5)
+                        .frame(height: 3)
                         .foregroundColor(Color(hue: 0.054, saturation: 0.0, brightness: 0.724))
                     Spacer()
                     Text("프로젝트가 존재하지 않습니다.")
@@ -133,9 +138,13 @@ struct ProjectListView: View {
                 } label: {
                     HStack {
                         Spacer()
-                        image
-                            .foregroundColor(.green)
-                            .font(.system(size: 30))
+                        NavigationLink {
+                            ProjectCreateView()
+                        } label: {
+                            image
+                                .foregroundColor(.green)
+                                .font(.system(size: 30))
+                        }
                     }
                     
                 }

@@ -9,8 +9,8 @@ import Foundation
 
 struct ProjectListResponse: Codable, Hashable {
     let name: String?
-    let startDate: Date?
-    let endDate: Date?
+    let startDate: String?
+    let endDate: String?
     let cropType: String?
     let error: String?
     

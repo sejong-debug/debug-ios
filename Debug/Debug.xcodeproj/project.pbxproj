@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA7F1322280690DE009F59F0 /* CropListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F1321280690DE009F59F0 /* CropListView.swift */; };
+		EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F13232806960F009F59F0 /* ProjectCreateView.swift */; };
 		EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */; };
 		EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */; };
 		EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5227F588D200648A5B /* ProjectListResponse.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA7F1321280690DE009F59F0 /* CropListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropListView.swift; sourceTree = "<group>"; };
+		EA7F13232806960F009F59F0 /* ProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateView.swift; sourceTree = "<group>"; };
 		EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
 		EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequestBody.swift; sourceTree = "<group>"; };
 		EABE8D5227F588D200648A5B /* ProjectListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListResponse.swift; sourceTree = "<group>"; };
@@ -110,6 +114,8 @@
 				EAC512FD27ED814A00F6E730 /* LoginView.swift */,
 				EAC5130A27ED8BB600F6E730 /* SignupView.swift */,
 				EAC5131427EDB07000F6E730 /* ProjectListView.swift */,
+				EA7F13232806960F009F59F0 /* ProjectCreateView.swift */,
+				EA7F1321280690DE009F59F0 /* CropListView.swift */,
 				EABE8D5427F595A900648A5B /* IssueView.swift */,
 			);
 			path = View;
@@ -204,6 +210,7 @@
 			files = (
 				EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */,
 				EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */,
+				EA7F1322280690DE009F59F0 /* CropListView.swift in Sources */,
 				EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */,
 				EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */,
 				EAD7F9D727F6C6740031BC32 /* LoginResponse.swift in Sources */,
@@ -211,6 +218,7 @@
 				EAD7F9D927F6D6140031BC32 /* SessionToken.swift in Sources */,
 				EAC5131327EDA21D00F6E730 /* LoginViewModel.swift in Sources */,
 				EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */,
+				EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */,
 				EAC5130E27ED936500F6E730 /* Webservice.swift in Sources */,
 				EABE8D5527F595A900648A5B /* IssueView.swift in Sources */,
 				EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */,
