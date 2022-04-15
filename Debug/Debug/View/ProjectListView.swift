@@ -132,21 +132,15 @@ struct ProjectListView: View {
                     Spacer()
                 }
                 
-                
-                Button {
-                    //프로젝트 생성 action
-                } label: {
-                    HStack {
-                        Spacer()
-                        NavigationLink {
-                            ProjectCreateView()
-                        } label: {
-                            image
-                                .foregroundColor(.green)
-                                .font(.system(size: 30))
-                        }
+                HStack {
+                    Spacer()
+                    NavigationLink {
+                        ProjectCreateView()
+                    } label: {
+                        image
+                            .foregroundColor(.green)
+                            .font(.system(size: 30))
                     }
-                    
                 }
                 .padding(.trailing)
                 .frame(height:40)
