@@ -85,7 +85,7 @@ struct ProjectListView: View {
                         VStack(spacing: 20) {
                             ForEach(projectList, id:\.self) { project in
                                 NavigationLink {
-                                    Text(project.name ?? "")
+                                    BoardListView(project: project)
                                 } label: {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 15)

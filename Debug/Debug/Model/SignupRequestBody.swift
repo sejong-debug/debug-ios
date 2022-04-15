@@ -12,3 +12,6 @@ struct SignupRequestBody: Codable {
     var username: String
     var password: String
 }
+
+//BoardResponseData
+//

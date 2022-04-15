@@ -56,7 +56,7 @@ struct ProjectCreateView: View {
                     .font(.system(size: 25, weight: .bold))
 
                 Picker("tip Perentage", selection: $selectedCropType) {
-                    ForEach(0 ..< cropTypes.count) { index in
+                    ForEach(0 ..< 3) { index in
                         Text("\(cropTypes[index])")
                     }
                 }
