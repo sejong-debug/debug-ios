@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BoardListView: View {
+    @Environment(\.dismiss) var dismiss
     @State var showingImagePopUp = false
     let image = Image(systemName: "plus.circle")
     let project: ProjectListResponse
@@ -16,6 +17,20 @@ struct BoardListView: View {
     var body: some View {
         ZStack {
             VStack {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "arrow.backward")
+                            .foregroundColor(.black)
+                    }
+
+                    Spacer()
+                    Text("작물 목록")
+                        .font(.system(size: 24, weight: .bold))
+
+                }
+                .padding()
                 if !testArray.isEmpty {
                     List {
                         ForEach(testArray, id: \.self) { test in
@@ -50,8 +65,8 @@ struct BoardListView: View {
                 .frame(height:40)
             }
             ImagePopUpView(showing: $showingImagePopUp)
-        }
-        .navigationTitle("작물 목록")
+        }//작물목록 title 다시 만들기
+        .navigationBarHidden(true)
     }
 }
 
