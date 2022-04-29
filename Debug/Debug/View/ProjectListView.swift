@@ -49,9 +49,9 @@ struct ProjectListView: View {
             NavigationLink(isActive: $logoutPossibility) {
                 LoginView()
             } label: { }
-            NavigationLink(isActive: $issuePossibility) {
-                IssueView()
-            } label: { }
+//            NavigationLink(isActive: $issuePossibility) {
+//                createMemoView()
+//            } label: { }
             Circle()
                 .frame(width: 301, height: 301)
                 .foregroundColor(.green)
