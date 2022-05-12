@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct LoginView: View {
-    @State var loginVM = LoginViewModel()
+
     @State var showingSignUpView = false
     @State var loginPossibility = false
+    
+    @State var username = ""
+    @State var password = ""
+    
+    @ObservedObject var loginVM = LoginViewModel()
     
     var body: some View {
         NavigationView {
@@ -34,10 +39,10 @@ struct LoginView: View {
                             .padding(.leading, 20)
                             .foregroundColor(.green)
                             .font(.system(size: 50))
-                            TextField("아이디", text: $loginVM.username)
+                            TextField("아이디", text: $username)
                                 .textFieldStyle(.roundedBorder)
                                 .padding(.vertical)
-                            TextField("비밀번호", text: $loginVM.password)
+                            TextField("비밀번호", text: $password)
                                 .textFieldStyle(.roundedBorder)
                             
                             HStack {
@@ -56,13 +61,14 @@ struct LoginView: View {
                             }
                             
                             Button {
+                                loginVM.login(username: username, password: password)
                                 //로그인 action
-                                loginVM.login()
-                                Task {
-                                    withAnimation {
-                                        loginPossibility = loginVM.isLogin
-                                    }
-                                }
+//                                loginVM.login()
+//                                Task {
+//                                    withAnimation {
+//                                        loginPossibility = loginVM.isLogin
+//                                    }
+//                                }
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5)
