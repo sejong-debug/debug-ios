@@ -7,36 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA39F07D2824E83400553991 /* DetectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA39F07C2824E83400553991 /* DetectView.swift */; };
 		EA50ACF8281BB5EC008122C1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50ACF7281BB5EC008122C1 /* ImagePicker.swift */; };
 		EA50ACFB281BCC62008122C1 /* CaptureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50ACFA281BCC62008122C1 /* CaptureImageView.swift */; };
+		EA5D4A0B282CCA9D00EE67A2 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */; };
+		EA5D4A0D282CCAAE00EE67A2 /* LoginResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */; };
+		EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */; };
+		EA5D4A12282CCEBA00EE67A2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EA5D4A11282CCEBA00EE67A2 /* Alamofire */; };
+		EA5D4A14282CD71500EE67A2 /* SignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */; };
+		EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */; };
+		EA5D4A18282CD84600EE67A2 /* SignUpResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */; };
+		EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */; };
 		EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F1321280690DE009F59F0 /* BoardListView.swift */; };
 		EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F13232806960F009F59F0 /* ProjectCreateView.swift */; };
-		EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */; };
-		EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */; };
-		EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5227F588D200648A5B /* ProjectListResponse.swift */; };
+		EA86331428250885002E2EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC512FF27ED814B00F6E730 /* Assets.xcassets */; };
+		EA8633152825088C002E2EBB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC5130227ED814B00F6E730 /* Preview Assets.xcassets */; };
 		EABE8D5527F595A900648A5B /* createMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* createMemoView.swift */; };
 		EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FB27ED814A00F6E730 /* DebugApp.swift */; };
 		EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FD27ED814A00F6E730 /* LoginView.swift */; };
-		EAC5130027ED814B00F6E730 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC512FF27ED814B00F6E730 /* Assets.xcassets */; };
-		EAC5130327ED814B00F6E730 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC5130227ED814B00F6E730 /* Preview Assets.xcassets */; };
 		EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5130A27ED8BB600F6E730 /* SignupView.swift */; };
-		EAC5130E27ED936500F6E730 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5130D27ED936500F6E730 /* Webservice.swift */; };
-		EAC5131127EDA08300F6E730 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131027EDA08300F6E730 /* SignupViewModel.swift */; };
-		EAC5131327EDA21D00F6E730 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131227EDA21D00F6E730 /* LoginViewModel.swift */; };
 		EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5131427EDB07000F6E730 /* ProjectListView.swift */; };
-		EAD7F9D727F6C6740031BC32 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */; };
-		EAD7F9D927F6D6140031BC32 /* SessionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAD7F9D827F6D6140031BC32 /* SessionToken.swift */; };
 		EAEC350928093AF900F4646F /* ImagePopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAEC350828093AF900F4646F /* ImagePopUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA39F07C2824E83400553991 /* DetectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectView.swift; sourceTree = "<group>"; };
 		EA50ACF7281BB5EC008122C1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EA50ACFA281BCC62008122C1 /* CaptureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageView.swift; sourceTree = "<group>"; };
+		EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
+		EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseBody.swift; sourceTree = "<group>"; };
+		EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestBody.swift; sourceTree = "<group>"; };
+		EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseBody.swift; sourceTree = "<group>"; };
+		EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
 		EA7F1321280690DE009F59F0 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
 		EA7F13232806960F009F59F0 /* ProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateView.swift; sourceTree = "<group>"; };
-		EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
-		EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequestBody.swift; sourceTree = "<group>"; };
-		EABE8D5227F588D200648A5B /* ProjectListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListResponse.swift; sourceTree = "<group>"; };
 		EABE8D5427F595A900648A5B /* createMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMemoView.swift; sourceTree = "<group>"; };
 		EAC512F827ED814A00F6E730 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC512FB27ED814A00F6E730 /* DebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugApp.swift; sourceTree = "<group>"; };
@@ -44,12 +50,7 @@
 		EAC512FF27ED814B00F6E730 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EAC5130227ED814B00F6E730 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EAC5130A27ED8BB600F6E730 /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
-		EAC5130D27ED936500F6E730 /* Webservice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
-		EAC5131027EDA08300F6E730 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
-		EAC5131227EDA21D00F6E730 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EAC5131427EDB07000F6E730 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
-		EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
-		EAD7F9D827F6D6140031BC32 /* SessionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionToken.swift; sourceTree = "<group>"; };
 		EAEC350828093AF900F4646F /* ImagePopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA5D4A12282CCEBA00EE67A2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,14 +75,21 @@
 			path = "CameraView+Extension";
 			sourceTree = "<group>";
 		};
+		EA5D4A19282CEF6B00EE67A2 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
 		EABE8D4D27F587B000648A5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EABE8D4E27F587EC00648A5B /* LoginRequestBody.swift */,
-				EAD7F9D627F6C6740031BC32 /* LoginResponse.swift */,
-				EAD7F9D827F6D6140031BC32 /* SessionToken.swift */,
-				EABE8D5027F5884F00648A5B /* SignupRequestBody.swift */,
-				EABE8D5227F588D200648A5B /* ProjectListResponse.swift */,
+				EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */,
+				EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */,
+				EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */,
+				EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -108,6 +117,7 @@
 				EA50ACF9281BCC42008122C1 /* CameraView+Extension */,
 				EABE8D4D27F587B000648A5B /* Model */,
 				EAC5130F27EDA05300F6E730 /* ViewModel */,
+				EA5D4A19282CEF6B00EE67A2 /* Security */,
 				EAC5130C27ED92EC00F6E730 /* Services */,
 				EAC5130927ED8B2600F6E730 /* View */,
 				EAC512FF27ED814B00F6E730 /* Assets.xcassets */,
@@ -134,6 +144,7 @@
 				EA7F1321280690DE009F59F0 /* BoardListView.swift */,
 				EAEC350828093AF900F4646F /* ImagePopUpView.swift */,
 				EABE8D5427F595A900648A5B /* createMemoView.swift */,
+				EA39F07C2824E83400553991 /* DetectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -141,7 +152,6 @@
 		EAC5130C27ED92EC00F6E730 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				EAC5130D27ED936500F6E730 /* Webservice.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -149,8 +159,8 @@
 		EAC5130F27EDA05300F6E730 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EAC5131027EDA08300F6E730 /* SignupViewModel.swift */,
-				EAC5131227EDA21D00F6E730 /* LoginViewModel.swift */,
+				EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */,
+				EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -171,6 +181,9 @@
 			dependencies = (
 			);
 			name = Debug;
+			packageProductDependencies = (
+				EA5D4A11282CCEBA00EE67A2 /* Alamofire */,
+			);
 			productName = Debug;
 			productReference = EAC512F827ED814A00F6E730 /* Debug.app */;
 			productType = "com.apple.product-type.application";
@@ -199,6 +212,9 @@
 				Base,
 			);
 			mainGroup = EAC512EF27ED814A00F6E730;
+			packageReferences = (
+				EA5D4A10282CCEBA00EE67A2 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = EAC512F927ED814A00F6E730 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -213,8 +229,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAC5130327ED814B00F6E730 /* Preview Assets.xcassets in Resources */,
-				EAC5130027ED814B00F6E730 /* Assets.xcassets in Resources */,
+				EA8633152825088C002E2EBB /* Preview Assets.xcassets in Resources */,
+				EA86331428250885002E2EBB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,23 +242,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */,
+				EA5D4A0B282CCA9D00EE67A2 /* LoginRequestBody.swift in Sources */,
+				EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */,
 				EAEC350928093AF900F4646F /* ImagePopUpView.swift in Sources */,
-				EABE8D5127F5884F00648A5B /* SignupRequestBody.swift in Sources */,
 				EA50ACF8281BB5EC008122C1 /* ImagePicker.swift in Sources */,
 				EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */,
-				EABE8D4F27F587EC00648A5B /* LoginRequestBody.swift in Sources */,
-				EABE8D5327F588D200648A5B /* ProjectListResponse.swift in Sources */,
-				EAD7F9D727F6C6740031BC32 /* LoginResponse.swift in Sources */,
-				EAC5131127EDA08300F6E730 /* SignupViewModel.swift in Sources */,
-				EAD7F9D927F6D6140031BC32 /* SessionToken.swift in Sources */,
-				EAC5131327EDA21D00F6E730 /* LoginViewModel.swift in Sources */,
+				EA39F07D2824E83400553991 /* DetectView.swift in Sources */,
+				EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */,
+				EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */,
 				EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */,
 				EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */,
-				EAC5130E27ED936500F6E730 /* Webservice.swift in Sources */,
 				EABE8D5527F595A900648A5B /* createMemoView.swift in Sources */,
+				EA5D4A18282CD84600EE67A2 /* SignUpResponseBody.swift in Sources */,
 				EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */,
 				EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */,
 				EA50ACFB281BCC62008122C1 /* CaptureImageView.swift in Sources */,
+				EA5D4A14282CD71500EE67A2 /* SignUpRequestBody.swift in Sources */,
+				EA5D4A0D282CCAAE00EE67A2 /* LoginResponseBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +390,7 @@
 				DEVELOPMENT_TEAM = WZPRSF7LPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용 권한 허용?";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용좀...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -405,7 +421,7 @@
 				DEVELOPMENT_TEAM = WZPRSF7LPK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용 권한 허용?";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라 사용좀...";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EA5D4A10282CCEBA00EE67A2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EA5D4A11282CCEBA00EE67A2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EA5D4A10282CCEBA00EE67A2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EAC512F027ED814A00F6E730 /* Project object */;
 }
