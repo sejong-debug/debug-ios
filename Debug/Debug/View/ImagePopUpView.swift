@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ImagePopUpView: View {
-    @Binding var showing: Bool
     
+    @Binding var showing: Bool
     @State private var image: Image?
     @State private var inputImage: UIImage?
     @State private var showingImagePicker = false
@@ -23,7 +23,7 @@ struct ImagePopUpView: View {
                 .ignoresSafeArea()
             }
             NavigationLink(isActive: $createBoardIsActive, destination: {
-                createMemoView(image: image)
+                createMemoView(image: image)//여기 isActive설정하자
             }, label: {
                 
             })
