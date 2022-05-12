@@ -10,62 +10,93 @@ import SwiftUI
 struct BoardListView: View {
     @Environment(\.dismiss) var dismiss
     @State var showingImagePopUp = false
+    
     let image = Image(systemName: "plus.circle")
-    let project: ProjectListResponse
-    let testArray: [String] = []
+//    let project: ProjectListResponse
+    let testArray: [String] = ["test1","test2","test3"]
+    
+    @State var createBoardIsActive = false
+    @State var goToDetectView = false
+    
+    @State var isActive = false
     
     var body: some View {
-        ZStack {
-            VStack {
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        Image(systemName: "arrow.backward")
-                            .foregroundColor(.black)
+        NavigationView {
+            ZStack {
+                VStack {
+                    HStack {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Image(systemName: "arrow.backward")
+                                .foregroundColor(.black)
+                        }
+
+                        Spacer()
+                        Text("작물 목록")
+                            .font(.system(size: 24, weight: .bold))
+                        Spacer()
+
                     }
-
-                    Spacer()
-                    Text("작물 목록")
-                        .font(.system(size: 24, weight: .bold))
-
-                }
-                .padding()
-                if !testArray.isEmpty {
-                    List {
-                        ForEach(testArray, id: \.self) { test in
-                            Text(test)
-            //                HStack {
-            //
-            //                } //불러올 이미지 + 메모내용 불러오기
+                    .padding()
+                    if !testArray.isEmpty {
+                        List {
+                            ForEach(testArray, id: \.self) { test in
+    //                            Text(test)
+                //                HStack {
+                //
+                //                } //불러올 이미지 + 메모내용 불러오기
+                                
+                                NavigationLink(destination: {
+                                    DetectView()
+                                }, label: {
+                                    HStack {
+                                        Image(systemName: "circle.fill")
+                                            .resizable()
+                                            .frame(width: 70, height: 70)
+                                        Text(test)
+                                            .padding(.horizontal)
+                                    }
+                                })
+//                                NavigationLink(destination: DetectView(rootIsActive: $isActive), isActive: $isActive, label: {
+//                                        HStack {
+//                                            Image(systemName: "circle.fill")
+//                                                .resizable()
+//                                                .frame(width: 70, height: 70)
+//                                            Text(test)
+//                                                .padding(.horizontal)
+//                                        }
+//                                })
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                    } else {
+                        Spacer()
+                        Text("작물이 존재하지 않습니다.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                        Text("오른쪽 아래 \(image) 버튼을 통해 생성해주세요.")
+                            .font(.system(size: 14))
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    HStack {
+                        Spacer()
+                        Button {
+                            showingImagePopUp.toggle()
+                        } label: {
+                            image
+                                .foregroundColor(.green)
+                                .font(.system(size: 30))
                         }
                     }
-                    .listStyle(PlainListStyle())
-                } else {
-                    Spacer()
-                    Text("작물이 존재하지 않습니다.")
-                        .font(.system(size: 14))
-                        .foregroundColor(.gray)
-                    Text("오른쪽 아래 \(image) 버튼을 통해 생성해주세요.")
-                        .font(.system(size: 14))
-                        .foregroundColor(.gray)
-                    Spacer()
+                    .padding(.trailing)
+                    .frame(height:40)
                 }
-                HStack {
-                    Spacer()
-                    Button {
-                        showingImagePopUp.toggle()
-                    } label: {
-                        image
-                            .foregroundColor(.green)
-                            .font(.system(size: 30))
-                    }
-                }
-                .padding(.trailing)
-                .frame(height:40)
-            }
-            ImagePopUpView(showing: $showingImagePopUp)
-        }//작물목록 title 다시 만들기
+                ImagePopUpView(showing: $showingImagePopUp)
+            }//작물목록 title 다시 만들기
+            .navigationBarHidden(true)
+        }
         .navigationBarHidden(true)
     }
 }
@@ -73,9 +104,9 @@ struct BoardListView: View {
 struct CropListView_Previews: PreviewProvider {
     
     static var previews: some View {
-        let project = ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.02", cropType: "팥", error: nil)
+//        let project = ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.02", cropType: "팥", error: nil)
         NavigationView {
-            BoardListView(project: project)
+            BoardListView()
         }
     }
 }
