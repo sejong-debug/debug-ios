@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct SignupView: View {
-    @StateObject var signupVM = SignupViewModel()
+    @StateObject var signUpVM = SignUpViewModel()
     @Environment(\.dismiss) var dismiss
+    
+    @State var name = ""
+    @State var username = ""
+    @State var password = ""
     
     var body: some View {
         VStack {
@@ -17,38 +21,36 @@ struct SignupView: View {
                 Text("이름 설정")
                 Spacer()
             }
-            TextField("이름", text: $signupVM.name)
+            TextField("이름", text: $name)
                 .textFieldStyle(.roundedBorder)
                 
             HStack {
                 Text("아이디 설정")
                 Spacer()
             }
-            TextField("아이디", text: $signupVM.username)
+            TextField("아이디", text: $username)
                 .textFieldStyle(.roundedBorder)
                 
             HStack {
                 Text("비밀번호 설정")
                 Spacer()
             }
-            TextField("비밀번호", text: $signupVM.password)
+            TextField("비밀번호", text: $password)
                 .textFieldStyle(.roundedBorder)
             Button {
-                signupVM.signup()
-                Task {
-                    if signupVM.isSignup == true {
-                        dismiss()
-                    }
-                }
+                signUpVM.signUp(username: username, password: password, name: name)
+                dismiss()
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(.green)
+                        .foregroundColor(name.count==0 || username.count == 0 || password.count == 0
+                                         ? .gray : .green)
                     Text("회원가입 완료")
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                 }
             }
+            .disabled(name.count==0 || username.count == 0 || password.count == 0)
             .frame( height: 45)
         }
         .padding()
