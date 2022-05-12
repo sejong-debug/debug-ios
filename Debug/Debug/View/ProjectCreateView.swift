@@ -11,7 +11,11 @@ struct ProjectCreateView: View {
     @Environment(\.dismiss) var dismiss
     @State private var startDate = Date()
     @State private var endDate = Date()
-    @State private var cropTypes: [String] = ["참깨", "콩", "팥"]
+    @State private var cropTypes: [String] = ["가지", "감자", "고추", "단호박", "들깨",
+                                              "딸기", "무", "배", "배추", "벼",
+                                              "사과", "상추", "수박", "애호박", "양배추",
+                                              "오이", "옥수수", "쥬키니호박", "참외", "콩",
+                                              "토마토", "파", "포도", "호박", "참깨", "팥"]
     @State private var selectedCropType = 0
     @State private var projectName = ""
     
@@ -54,14 +58,17 @@ struct ProjectCreateView: View {
             VStack(spacing: 25) {
                 Text("작물을 선택하세요.")
                     .font(.system(size: 25, weight: .bold))
-
-                Picker("tip Perentage", selection: $selectedCropType) {
-                    ForEach(0 ..< 3) { index in
-                        Text("\(cropTypes[index])")
+                
+                HStack {
+                    Text("선택 작물: ")
+                    Picker("tip Perentage", selection: $selectedCropType) {
+                        ForEach(0 ..< cropTypes.count ) { index in
+                            Text("\(cropTypes[index])")
+                        }
                     }
                 }
             }
-            .pickerStyle(.segmented)
+            .pickerStyle(MenuPickerStyle())
             .padding(.top, 25)
             
             VStack(spacing: 25) {
