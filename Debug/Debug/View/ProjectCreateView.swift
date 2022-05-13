@@ -21,6 +21,10 @@ struct ProjectCreateView: View {
     
     @State var opacityRatio: Double = 0
     
+    @State var selectCheckBox = false
+    
+    @ObservedObject var projectCreateVM = ProjectCreateViewModel()
+    
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY년 M월 d일"
@@ -44,17 +48,31 @@ struct ProjectCreateView: View {
             Divider()
                 .padding(.horizontal, -15)
             VStack(spacing: 25) {
+                
                 Text("프로젝트 기간을 선택하세요.")
                     .font(.system(size: 25, weight: .bold))
-                DatePicker(selection: $startDate, in: ...Date(), displayedComponents: .date) {
-                   Text("프로젝트 시작 날짜를 선택하세요")
+                
+                HStack {
+                    Text("기간을 선택하지 않겠습니다.")
+                    Image(systemName: selectCheckBox ? "checkmark.square"  : "square")
+                        .onTapGesture {
+                            selectCheckBox.toggle()
+                        }
                 }
-                DatePicker(selection: $endDate, in: Date()... , displayedComponents: .date) {
-                    Text("프로젝트 종료 날짜를 선택하세요")
+                
+                VStack {
+                    DatePicker(selection: $startDate, in: ...Date(), displayedComponents: .date) {
+                       Text("프로젝트 시작 날짜를 선택하세요")
+                    }
+                    DatePicker(selection: $endDate, in: startDate... , displayedComponents: .date) {
+                        Text("프로젝트 종료 날짜를 선택하세요")
+                    }
                 }
+                .foregroundColor(selectCheckBox ? .gray : .black)
+                .disabled(selectCheckBox)
             }
             .padding(.top, 25)
-            
+            //이 부분
             VStack(spacing: 25) {
                 Text("작물을 선택하세요.")
                     .font(.system(size: 25, weight: .bold))
@@ -96,6 +114,24 @@ struct ProjectCreateView: View {
                     print(projectName) // test code
                     
                     if !projectName.isEmpty {
+                        
+                        if selectCheckBox == true {
+                            let requestBody = ProjectCreateRequestBody(name: projectName,
+                                                                       cropType: cropTypes[selectedCropType],
+                                                                       startDate: "",
+                                                                       endDate: "")
+                            
+                            projectCreateVM.createProject(projectCreateRequestBody: requestBody)
+                            
+                        } else {
+                            let start = dateFormatter.string(from: startDate)
+                            let end = dateFormatter.string(from: endDate)
+                            
+                            let requestBody = ProjectCreateRequestBody(name: projectName,
+                                                                       cropType: cropTypes[selectedCropType],
+                                                                       startDate: start,
+                                                                       endDate: end)
+                        }
                         dismiss()
                     } else {
                         opacityRatio = 1
