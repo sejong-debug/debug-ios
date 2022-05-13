@@ -22,6 +22,7 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("이름", text: $name)
+                .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
                 
             HStack {
@@ -29,6 +30,7 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("아이디", text: $username)
+                .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
                 
             HStack {
@@ -36,6 +38,7 @@ struct SignupView: View {
                 Spacer()
             }
             TextField("비밀번호", text: $password)
+                .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
             Button {
                 signUpVM.signUp(username: username, password: password, name: name)
