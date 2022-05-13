@@ -12,9 +12,15 @@ struct ProjectListView: View {
     @State private var showingIssueAlert = false
     @State var logoutPossibility = false
     @State var issuePossibility = false
-//    @State var projectList: [ProjectListResponse] = [ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.10", cropType: "팥", error: nil),ProjectListResponse(name: "hello", startDate: "2020.01.15", endDate: "2020.01.30", cropType: "콩", error: nil),ProjectListResponse(name: "hello", startDate: "2021.01.12", endDate: "2021.11.12", cropType: "참깨", error: nil)]
     @State var projectList: [String] = []
     //실제로 ProjectListView 등장할때 onappear를 통해 projectList를 서버에서 받아와야함
+    @ObservedObject var projectListVM = ProjectListViewModel()
+    @State var page = 1 //서버에 요청 페이지
+    let spaceName = "scroll"
+
+    @State var wholeSize: CGSize = .zero
+    @State var scrollViewSize: CGSize = .zero
+    
     let sesame = Image("참깨 이모지")
     let adzukiBeans = Image("팥 이모지")
     let bean = Image("콩 이모지")
@@ -53,9 +59,9 @@ struct ProjectListView: View {
 //                createMemoView()
 //            } label: { }
             Circle()
-                .frame(width: 301, height: 301)
+                .frame(width: 310, height: 310)
                 .foregroundColor(.green)
-                .position(x: 100, y: 90)
+                .position(x: 60, y: 60)
             VStack {
                 HStack {
 //                    Image(systemName: "text.justify")
@@ -77,46 +83,80 @@ struct ProjectListView: View {
                     .padding(.horizontal)
                     .foregroundColor(.white)
                     .font(.system(size: 40))
-                if true {//사실 true 가 아니고 projectList가 비어있지 않은 상태를 나타내야함
+                if !projectListVM.projectListData.isEmpty {//사실 true 가 아니고 projectList가 비어있지 않은 상태를 나타내야함
                     Rectangle()
                         .frame(height: 3)
                         .foregroundColor(Color(hue: 0.054, saturation: 0.0, brightness: 0.724))
-                    ScrollView {
-                        VStack(spacing: 20) {
-                            ForEach(projectList, id:\.self) { project in
-                                NavigationLink {
-                                    BoardListView()
-                                } label: {
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .foregroundColor(Color(red: 0.969, green: 0.969, blue: 0.969))
-                                            .frame(height: 80)
-                                            .shadow(color: .gray, radius: 1, x: 0, y: 5)
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .stroke(lineWidth: 1)
-                                            .foregroundColor(.gray)
-                                            .frame(height: 80)
+                    ChildSizeReader(size: $wholeSize) {
+                        ScrollView {
+                            ChildSizeReader(size: $scrollViewSize) {
+                                VStack(spacing: 20) {
+                                    ForEach(projectListVM.projectListData.flatMap{ $0 }, id: \.self) { project in
+                                        NavigationLink(destination: {
+                                            //BoardListView로 이동해야함
+                                        }, label: {
+                                            ZStack {
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .foregroundColor(Color(red: 0.969, green: 0.969, blue: 0.969))
+                                                    .frame(height: 80)
+                                                    .shadow(color: .gray, radius: 1, x: 0, y: 5)
+                                                RoundedRectangle(cornerRadius: 15)
+                                                    .stroke(lineWidth: 1)
+                                                    .foregroundColor(.gray)
+                                                    .frame(height: 80)
 
-                                        HStack {
-                                            VStack (alignment: .leading) {
-                                                Text("no title")
-//                                                Text("작물: \(project.cropType ?? "no data")")
-//                                                Text("\(project.startDate ?? "") ~ \(project.endDate ?? "")")
-                                            }
-                                            .foregroundColor(.black)
-                                            .font(.system(size: 15))
-                                            Spacer()
-//                                            if let cropType = project.cropType {
-//                                                selectCropType(cropType)
-//                                            }
-                                        }
-                                        .padding()
-                                        }//ZStack
+                                                HStack {
+                                                    VStack (alignment: .leading) {
+                                                        Text("no title")
+                                                        Text("작물: \(project.cropType)")
+                                                        Text("\(project.startDate ) ~ \(project.endDate)")
+                                                    }
+                                                    .foregroundColor(.black)
+                                                    .font(.system(size: 15))
+                                                    Spacer()
+                                                    if let cropType = project.cropType {
+                                                        selectCropType(cropType)
+                                                    }
+                                                }
+                                                .padding()
+                                                }//ZStack
+                                            })
                                     }
                                 }
+                                .background(
+                                    GeometryReader { proxy in
+                                        Color.clear.preference(
+                                            key: ViewOffsetKey.self,
+                                            value: -1 * proxy.frame(in: .named(spaceName)).origin.y
+                                        )
+                                    }
+                                )
+                                .onPreferenceChange(
+                                    ViewOffsetKey.self,
+                                    perform: { value in
+                                        print("offset: \(value)") // offset: 1270.3333333333333 when User has reached the bottom
+                                        print("height: \(scrollViewSize.height)") // height: 2033.3333333333333
+
+                                        if value >= scrollViewSize.height - wholeSize.height {
+                                            projectListVM.loadProjectList(page: page)
+                                            page += 1
+                                            print("User has reached the bottom of the ScrollView.")
+                                            print(page)
+                                        } else {
+                                            print("not reached.")
+                                        }
+                                    }
+                                )
                             }
-                        
+                        }
+                        .coordinateSpace(name: spaceName)
                     }
+                    .onChange(
+                        of: scrollViewSize,
+                        perform: { value in
+                            print(value)
+                        }
+                    )
                     .padding(.horizontal)
                 } else {
                     Rectangle()
@@ -156,6 +196,44 @@ struct ProjectListView: View {
             Button("네", role: .destructive) { issuePossibility = true }
         }
     }
+}
+
+struct ViewOffsetKey: PreferenceKey {
+  typealias Value = CGFloat
+  static var defaultValue = CGFloat.zero
+  static func reduce(value: inout Value, nextValue: () -> Value) {
+    value += nextValue()
+  }
+}
+
+struct ChildSizeReader<Content: View>: View {
+  @Binding var size: CGSize
+
+  let content: () -> Content
+  var body: some View {
+    ZStack {
+      content().background(
+        GeometryReader { proxy in
+          Color.clear.preference(
+            key: SizePreferenceKey.self,
+            value: proxy.size
+          )
+        }
+      )
+    }
+    .onPreferenceChange(SizePreferenceKey.self) { preferences in
+      self.size = preferences
+    }
+  }
+}
+
+struct SizePreferenceKey: PreferenceKey {
+  typealias Value = CGSize
+  static var defaultValue: Value = .zero
+
+  static func reduce(value _: inout Value, nextValue: () -> Value) {
+    _ = nextValue()
+  }
 }
 
 struct TextCompose: View {
