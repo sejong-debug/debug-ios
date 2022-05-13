@@ -41,10 +41,11 @@ struct LoginView: View {
                             .font(.system(size: 50))
                             TextField("아이디", text: $username)
                                 .textFieldStyle(.roundedBorder)
+                                .keyboardType(.default)
                                 .padding(.vertical)
                             TextField("비밀번호", text: $password)
+                                .keyboardType(.default)
                                 .textFieldStyle(.roundedBorder)
-                            
                             HStack {
                                 Spacer()
                                 Button {
@@ -62,13 +63,7 @@ struct LoginView: View {
                             
                             Button {
                                 loginVM.login(username: username, password: password)
-                                //로그인 action
-//                                loginVM.login()
-//                                Task {
-//                                    withAnimation {
-//                                        loginPossibility = loginVM.isLogin
-//                                    }
-//                                }
+                                print("로그인 시도")
                             } label: {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 5)
@@ -93,6 +88,13 @@ struct LoginView: View {
         .onAppear {
             withAnimation {
                 loginPossibility = false
+            }
+        }
+        .onChange(of: loginVM.loginResult) { _ in
+            if loginVM.loginResult == true {
+                withAnimation {
+                    loginPossibility = true
+                }
             }
         }
     }
