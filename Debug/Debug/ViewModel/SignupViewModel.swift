@@ -14,10 +14,9 @@ class SignUpViewModel: ObservableObject {
         
         let signUpRequestBody = SignUpReqeustBody(username: username, password: password, name: name)
         
-        let host = "localhost"
-        let url = "http://\(host):8080/login"
-        
-        AF.request(url, method: .post, parameters: signUpRequestBody, encoder: JSONParameterEncoder.default)
+        let host = "172.30.1.13"
+        let url = "http://\(host):8080/members"
+        AF.request("wrong url", method: .post, parameters: signUpRequestBody, encoder: JSONParameterEncoder.default)
             .validate()
             .responseDecodable(of: SignUpResponseBody.self) { result in
                 switch result.result {
