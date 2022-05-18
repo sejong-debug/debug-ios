@@ -12,7 +12,7 @@ struct ProjectListView: View {
     @State private var showingIssueAlert = false
     @State var logoutPossibility = false
     @State var issuePossibility = false
-    @State var projectList: [String] = []
+    @State var projectList: [String] = ["project1"]
     //실제로 ProjectListView 등장할때 onappear를 통해 projectList를 서버에서 받아와야함
     @ObservedObject var projectListVM = ProjectListViewModel()
     @State var page = 1 //서버에 요청 페이지
@@ -55,34 +55,37 @@ struct ProjectListView: View {
             NavigationLink(isActive: $logoutPossibility) {
                 LoginView()
             } label: { }
-//            NavigationLink(isActive: $issuePossibility) {
-//                createMemoView()
-//            } label: { }
             Circle()
                 .frame(width: 310, height: 310)
                 .foregroundColor(.green)
                 .position(x: 60, y: 60)
             VStack {
                 HStack {
-//                    Image(systemName: "text.justify")
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
-//                        .onTapGesture {
-//                            showingIssueAlert = true
-//                        }
+                    VStack {
+                        TextCompose()
+                            .padding(.horizontal)
+                            .foregroundColor(.white)
+                            .font(.system(size: 40))
+                    }
                     Spacer()
-//                    Image(systemName: "multiply")
-//                        .resizable()
-//                        .frame(width: 20, height: 20)
-//                        .padding(.trailing)
-//                        .onTapGesture {
-//                            showingLogoutAlert = true
-//                        }
+                    NavigationLink {
+                        StatisticsView()
+                    } label: {
+                        Text("프로젝트 통계")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.green)
+                    }
+                    .padding(5)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .stroke(lineWidth: 2)
+                            .foregroundColor(.green)
+                    
+                    )
+                    .offset(y: 80)
+                    .padding(.trailing)
                 }
-                TextCompose()
-                    .padding(.horizontal)
-                    .foregroundColor(.white)
-                    .font(.system(size: 40))
+
                 if !projectListVM.projectListData.isEmpty {//사실 true 가 아니고 projectList가 비어있지 않은 상태를 나타내야함
                     Rectangle()
                         .frame(height: 3)
@@ -173,6 +176,11 @@ struct ProjectListView: View {
                 }
                 
                 HStack {
+                    NavigationLink {
+                        BoardListView()
+                    } label: {
+                        Text("tap")
+                    }
                     Spacer()
                     NavigationLink {
                         ProjectCreateView()

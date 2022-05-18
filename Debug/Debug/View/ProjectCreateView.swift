@@ -44,7 +44,7 @@ struct ProjectCreateView: View {
                         dismiss()
                     }
             }
-            
+
             Divider()
                 .padding(.horizontal, -15)
             VStack(spacing: 25) {
@@ -71,7 +71,7 @@ struct ProjectCreateView: View {
                 .foregroundColor(selectCheckBox ? .gray : .black)
                 .disabled(selectCheckBox)
             }
-            .padding(.top, 25)
+//            .padding(.top, 25)
             //이 부분
             VStack(spacing: 25) {
                 Text("작물을 선택하세요.")
@@ -148,7 +148,7 @@ struct ProjectCreateView: View {
             }
             Spacer()
         }
-        .padding()
+        .padding([.leading, .trailing, .bottom])
         .navigationBarHidden(true)
     }
 }
