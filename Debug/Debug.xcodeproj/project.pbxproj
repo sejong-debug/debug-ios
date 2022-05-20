@@ -9,27 +9,21 @@
 /* Begin PBXBuildFile section */
 		EA39F07D2824E83400553991 /* DetectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA39F07C2824E83400553991 /* DetectView.swift */; };
 		EA4AF9F4282E13E400A7A991 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EA4AF9F3282E13E400A7A991 /* Alamofire */; };
-		EA4AFA10282E2F1600A7A991 /* ProjectCreateRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA0F282E2F1600A7A991 /* ProjectCreateRequestBody.swift */; };
 		EA4AFA12282E308700A7A991 /* ProjectCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA11282E308700A7A991 /* ProjectCreateViewModel.swift */; };
-		EA4AFA14282E339C00A7A991 /* ProjectCreateResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA13282E339C00A7A991 /* ProjectCreateResponseBody.swift */; };
-		EA4AFA16282E3AE500A7A991 /* ProjectListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA15282E3AE500A7A991 /* ProjectListRequest.swift */; };
-		EA4AFA18282E3B9900A7A991 /* ProjectListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA17282E3B9900A7A991 /* ProjectListResponse.swift */; };
 		EA4AFA1A282E436400A7A991 /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA4AFA19282E436400A7A991 /* ProjectListViewModel.swift */; };
 		EA50ACF8281BB5EC008122C1 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50ACF7281BB5EC008122C1 /* ImagePicker.swift */; };
 		EA50ACFB281BCC62008122C1 /* CaptureImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA50ACFA281BCC62008122C1 /* CaptureImageView.swift */; };
-		EA5D4A0B282CCA9D00EE67A2 /* LoginRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */; };
-		EA5D4A0D282CCAAE00EE67A2 /* LoginResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */; };
 		EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */; };
-		EA5D4A14282CD71500EE67A2 /* SignUpRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */; };
 		EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */; };
-		EA5D4A18282CD84600EE67A2 /* SignUpResponseBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */; };
 		EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */; };
+		EA75606828375F7A004597DE /* CreateMemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75606728375F7A004597DE /* CreateMemoViewModel.swift */; };
+		EA75606A28377981004597DE /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75606928377981004597DE /* StatisticsViewModel.swift */; };
 		EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F1321280690DE009F59F0 /* BoardListView.swift */; };
 		EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F13232806960F009F59F0 /* ProjectCreateView.swift */; };
 		EA86331428250885002E2EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC512FF27ED814B00F6E730 /* Assets.xcassets */; };
 		EA8633152825088C002E2EBB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC5130227ED814B00F6E730 /* Preview Assets.xcassets */; };
 		EAB5438E2834C9B3005A2143 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5438D2834C9B3005A2143 /* StatisticsView.swift */; };
-		EABE8D5527F595A900648A5B /* createMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* createMemoView.swift */; };
+		EABE8D5527F595A900648A5B /* CreateMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* CreateMemoView.swift */; };
 		EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FB27ED814A00F6E730 /* DebugApp.swift */; };
 		EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FD27ED814A00F6E730 /* LoginView.swift */; };
 		EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5130A27ED8BB600F6E730 /* SignupView.swift */; };
@@ -39,25 +33,19 @@
 
 /* Begin PBXFileReference section */
 		EA39F07C2824E83400553991 /* DetectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectView.swift; sourceTree = "<group>"; };
-		EA4AFA0F282E2F1600A7A991 /* ProjectCreateRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateRequestBody.swift; sourceTree = "<group>"; };
 		EA4AFA11282E308700A7A991 /* ProjectCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewModel.swift; sourceTree = "<group>"; };
-		EA4AFA13282E339C00A7A991 /* ProjectCreateResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateResponseBody.swift; sourceTree = "<group>"; };
-		EA4AFA15282E3AE500A7A991 /* ProjectListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListRequest.swift; sourceTree = "<group>"; };
-		EA4AFA17282E3B9900A7A991 /* ProjectListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListResponse.swift; sourceTree = "<group>"; };
 		EA4AFA19282E436400A7A991 /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
 		EA50ACF7281BB5EC008122C1 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		EA50ACFA281BCC62008122C1 /* CaptureImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageView.swift; sourceTree = "<group>"; };
-		EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequestBody.swift; sourceTree = "<group>"; };
-		EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseBody.swift; sourceTree = "<group>"; };
 		EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequestBody.swift; sourceTree = "<group>"; };
 		EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseBody.swift; sourceTree = "<group>"; };
 		EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
+		EA75606728375F7A004597DE /* CreateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewModel.swift; sourceTree = "<group>"; };
+		EA75606928377981004597DE /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		EA7F1321280690DE009F59F0 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
 		EA7F13232806960F009F59F0 /* ProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateView.swift; sourceTree = "<group>"; };
 		EAB5438D2834C9B3005A2143 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		EABE8D5427F595A900648A5B /* createMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createMemoView.swift; sourceTree = "<group>"; };
+		EABE8D5427F595A900648A5B /* CreateMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoView.swift; sourceTree = "<group>"; };
 		EAC512F827ED814A00F6E730 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC512FB27ED814A00F6E730 /* DebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugApp.swift; sourceTree = "<group>"; };
 		EAC512FD27ED814A00F6E730 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -100,14 +88,6 @@
 		EABE8D4D27F587B000648A5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EA5D4A13282CD71500EE67A2 /* SignUpRequestBody.swift */,
-				EA5D4A17282CD84600EE67A2 /* SignUpResponseBody.swift */,
-				EA5D4A0A282CCA9D00EE67A2 /* LoginRequestBody.swift */,
-				EA5D4A0C282CCAAE00EE67A2 /* LoginResponseBody.swift */,
-				EA4AFA0F282E2F1600A7A991 /* ProjectCreateRequestBody.swift */,
-				EA4AFA13282E339C00A7A991 /* ProjectCreateResponseBody.swift */,
-				EA4AFA15282E3AE500A7A991 /* ProjectListRequest.swift */,
-				EA4AFA17282E3B9900A7A991 /* ProjectListResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,12 +137,12 @@
 			children = (
 				EAC512FD27ED814A00F6E730 /* LoginView.swift */,
 				EAC5130A27ED8BB600F6E730 /* SignupView.swift */,
-				EAC5131427EDB07000F6E730 /* ProjectListView.swift */,
 				EAB5438D2834C9B3005A2143 /* StatisticsView.swift */,
 				EA7F13232806960F009F59F0 /* ProjectCreateView.swift */,
+				EAC5131427EDB07000F6E730 /* ProjectListView.swift */,
 				EA7F1321280690DE009F59F0 /* BoardListView.swift */,
 				EAEC350828093AF900F4646F /* ImagePopUpView.swift */,
-				EABE8D5427F595A900648A5B /* createMemoView.swift */,
+				EABE8D5427F595A900648A5B /* CreateMemoView.swift */,
 				EA39F07C2824E83400553991 /* DetectView.swift */,
 			);
 			path = View;
@@ -178,10 +158,12 @@
 		EAC5130F27EDA05300F6E730 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */,
 				EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */,
+				EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */,
 				EA4AFA11282E308700A7A991 /* ProjectCreateViewModel.swift */,
 				EA4AFA19282E436400A7A991 /* ProjectListViewModel.swift */,
+				EA75606728375F7A004597DE /* CreateMemoViewModel.swift */,
+				EA75606928377981004597DE /* StatisticsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -264,29 +246,23 @@
 			files = (
 				EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */,
 				EAB5438E2834C9B3005A2143 /* StatisticsView.swift in Sources */,
-				EA5D4A0B282CCA9D00EE67A2 /* LoginRequestBody.swift in Sources */,
 				EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */,
 				EAEC350928093AF900F4646F /* ImagePopUpView.swift in Sources */,
 				EA4AFA1A282E436400A7A991 /* ProjectListViewModel.swift in Sources */,
-				EA4AFA10282E2F1600A7A991 /* ProjectCreateRequestBody.swift in Sources */,
 				EA50ACF8281BB5EC008122C1 /* ImagePicker.swift in Sources */,
 				EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */,
 				EA39F07D2824E83400553991 /* DetectView.swift in Sources */,
 				EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */,
 				EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */,
-				EA4AFA14282E339C00A7A991 /* ProjectCreateResponseBody.swift in Sources */,
+				EA75606A28377981004597DE /* StatisticsViewModel.swift in Sources */,
 				EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */,
+				EA75606828375F7A004597DE /* CreateMemoViewModel.swift in Sources */,
 				EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */,
-				EABE8D5527F595A900648A5B /* createMemoView.swift in Sources */,
-				EA5D4A18282CD84600EE67A2 /* SignUpResponseBody.swift in Sources */,
-				EA4AFA18282E3B9900A7A991 /* ProjectListResponse.swift in Sources */,
+				EABE8D5527F595A900648A5B /* CreateMemoView.swift in Sources */,
 				EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */,
 				EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */,
 				EA50ACFB281BCC62008122C1 /* CaptureImageView.swift in Sources */,
-				EA5D4A14282CD71500EE67A2 /* SignUpRequestBody.swift in Sources */,
 				EA4AFA12282E308700A7A991 /* ProjectCreateViewModel.swift in Sources */,
-				EA5D4A0D282CCAAE00EE67A2 /* LoginResponseBody.swift in Sources */,
-				EA4AFA16282E3AE500A7A991 /* ProjectListRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
