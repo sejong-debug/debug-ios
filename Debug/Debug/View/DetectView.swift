@@ -24,7 +24,6 @@ struct DetectView: View {
                 }
                 Spacer()
             }
-            .padding(.vertical)
             image?
                 .resizable()
                 .scaledToFit()
@@ -43,7 +42,7 @@ struct DetectView: View {
             }
             Spacer()
         }
-        .padding()
+        .padding([.leading,.trailing,.bottom])
         .navigationBarHidden(true)
     }
 }

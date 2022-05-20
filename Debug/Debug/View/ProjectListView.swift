@@ -20,7 +20,7 @@ struct ProjectListView: View {
 
     @State var wholeSize: CGSize = .zero
     @State var scrollViewSize: CGSize = .zero
-    
+    @State var projectID: Int = 0
     let sesame = Image("참깨 이모지")
     let adzukiBeans = Image("팥 이모지")
     let bean = Image("콩 이모지")
@@ -29,7 +29,7 @@ struct ProjectListView: View {
     
     var dateformat: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY.MM.dd"
+        formatter.dateFormat = "YYYY-MM-dd"
         return formatter
     }
     
@@ -37,8 +37,8 @@ struct ProjectListView: View {
         
         if cropType == "팥" {
             return   adzukiBeans
-                .resizable()
-                .frame(width: 60, height: 60)
+                    .resizable()
+                    .frame(width: 60, height: 60)
         } else if cropType == "콩" {
             return   bean
                     .resizable()

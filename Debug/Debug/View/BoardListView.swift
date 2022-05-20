@@ -33,19 +33,17 @@ struct BoardListView: View {
                         }
 
                         Spacer()
-                        Text("작물 목록")
-                            .font(.system(size: 24, weight: .bold))
-                        Spacer()
-
+//                        Text("작물 목록")
+//                            .font(.system(size: 24, weight: .bold))
+//                        Spacer()
+//                        Image(systemName: "arrow.backward")
+//                            .foregroundColor(.black)
+//                            .opacity(0)
                     }
-                    .padding()
+                    .padding([.leading,.trailing,.bottom])
                     if !testArray.isEmpty {
                         List {
                             ForEach(testArray, id: \.self) { test in
-    //                            Text(test)
-                //                HStack {
-                //
-                //                } //불러올 이미지 + 메모내용 불러오기
                                 
                                 NavigationLink(destination: {
                                     DetectView()
@@ -105,8 +103,6 @@ struct CropListView_Previews: PreviewProvider {
     
     static var previews: some View {
 //        let project = ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.02", cropType: "팥", error: nil)
-        NavigationView {
-            BoardListView()
-        }
+        BoardListView()
     }
 }

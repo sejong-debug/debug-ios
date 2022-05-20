@@ -27,26 +27,21 @@ struct ProjectCreateView: View {
     
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY년 M월 d일"
+        formatter.dateFormat = "YYYY-MM-dd"
         return formatter
     }
     
     var body: some View {
         VStack(spacing: 15) {
             HStack {
-                Text("프로젝트 생성")
-                    .font(.system(size: 30, weight: .bold))
+                Button {
+                    dismiss()
+                } label: {
+                    Image(systemName: "arrow.backward")
+                        .foregroundColor(.black)
+                }
                 Spacer()
-                Image(systemName: "multiply")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                    .onTapGesture {
-                        dismiss()
-                    }
             }
-
-            Divider()
-                .padding(.horizontal, -15)
             VStack(spacing: 25) {
                 
                 Text("프로젝트 기간을 선택하세요.")
@@ -74,7 +69,7 @@ struct ProjectCreateView: View {
 //            .padding(.top, 25)
             //이 부분
             VStack(spacing: 25) {
-                Text("작물을 선택하세요.")
+                Text("등록할 작물을 선택하세요.")
                     .font(.system(size: 25, weight: .bold))
                 
                 HStack {

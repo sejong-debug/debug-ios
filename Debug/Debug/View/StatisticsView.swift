@@ -16,6 +16,9 @@ struct StatisticsView: View {
     @State private var endDate = Date()
     
     @State private var selectedCropType = 0
+    
+    @ObservedObject var statisticsVM = StatisticsViewModel()
+    
     @State private var cropTypes: [String] = ["가지", "감자", "고추", "단호박", "들깨",
                                               "딸기", "무", "배", "배추", "벼",
                                               "사과", "상추", "수박", "애호박", "양배추",
@@ -76,9 +79,9 @@ struct StatisticsView: View {
                 .padding(.vertical)
                 Spacer()
                 ScrollView {
-                    ForEach(cropTypes, id:\.self) { crop in
+                    ForEach(statisticsVM.data.last?.diseases.keys.sorted(by: { $0.hashValue < $1.hashValue  }) ?? [], id:\.self) { disease in
                         HStack {
-                            Text(crop)
+                            Text(disease)
                                 .font(.system(size: 16, weight: .semibold))
                             Spacer()
                             HStack {
