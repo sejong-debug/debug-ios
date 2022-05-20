@@ -8,6 +8,17 @@
 import Alamofire
 import Foundation
 
+struct SignUpReqeustBody: Codable {
+    var username: String
+    var password: String
+    var name: String
+}
+
+struct SignUpResponseBody: Codable {
+    let success: Bool
+}
+
+
 class SignUpViewModel: ObservableObject {
     
     func signUp(username: String,password: String,name: String) {

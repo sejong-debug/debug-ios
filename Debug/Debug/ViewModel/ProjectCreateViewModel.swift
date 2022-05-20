@@ -8,6 +8,18 @@
 import Alamofire
 import Foundation
 
+struct ProjectCreateRequestBody: Codable {
+    var name: String
+    var cropType: String
+    var startDate: String
+    var endDate: String
+}
+
+struct ProjectCreateResponseBody: Codable {
+    let success: Bool
+    let data: Int
+}
+
 class ProjectCreateViewModel: ObservableObject {
     
     func createProject(projectCreateRequestBody: ProjectCreateRequestBody) {

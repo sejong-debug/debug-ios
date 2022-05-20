@@ -8,6 +8,21 @@
 import Alamofire
 import Foundation
 
+struct LoginRequestBody: Codable {
+    var username: String
+    var password: String
+}
+
+struct LoginResponseBody: Codable {
+    let success: Bool
+    let data: DataClass
+}
+
+struct DataClass: Codable {
+    let accessToken: String
+}
+
+
 class LoginViewModel: ObservableObject {
     
     @Published var loginResult: Bool?
