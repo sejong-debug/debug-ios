@@ -15,7 +15,7 @@ struct ProjectListView: View {
     @State var projectList: [String] = ["project1"]
     //실제로 ProjectListView 등장할때 onappear를 통해 projectList를 서버에서 받아와야함
     @ObservedObject var projectListVM = ProjectListViewModel()
-    @State var page = 1 //서버에 요청 페이지
+    @State var page = 0 //서버에 요청 페이지
     let spaceName = "scroll"
 
     @State var wholeSize: CGSize = .zero
@@ -31,23 +31,6 @@ struct ProjectListView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd"
         return formatter
-    }
-    
-    func selectCropType(_ cropType: String) -> some View {
-        
-        if cropType == "팥" {
-            return   adzukiBeans
-                    .resizable()
-                    .frame(width: 60, height: 60)
-        } else if cropType == "콩" {
-            return   bean
-                    .resizable()
-                    .frame(width: 60, height: 60)
-        } else {
-            return   sesame
-                    .resizable()
-                    .frame(width: 60, height: 60)
-        }
     }
     
     var body: some View {
@@ -89,7 +72,6 @@ struct ProjectListView: View {
                 if !projectListVM.projectListData.isEmpty {//사실 true 가 아니고 projectList가 비어있지 않은 상태를 나타내야함
                     Rectangle()
                         .frame(height: 3)
-                        .foregroundColor(Color(hue: 0.054, saturation: 0.0, brightness: 0.724))
                     ChildSizeReader(size: $wholeSize) {
                         ScrollView {
                             ChildSizeReader(size: $scrollViewSize) {
@@ -97,10 +79,12 @@ struct ProjectListView: View {
                                     ForEach(projectListVM.projectListData.flatMap{ $0 }, id: \.self) { project in
                                         NavigationLink(destination: {
                                             //BoardListView로 이동해야함
+                                            let projectID = project.projectID
+                                            BoardListView(projectID: projectID)
                                         }, label: {
                                             ZStack {
                                                 RoundedRectangle(cornerRadius: 15)
-                                                    .foregroundColor(Color(red: 0.969, green: 0.969, blue: 0.969))
+                                                    .foregroundColor(.white)
                                                     .frame(height: 80)
                                                     .shadow(color: .gray, radius: 1, x: 0, y: 5)
                                                 RoundedRectangle(cornerRadius: 15)
@@ -110,22 +94,34 @@ struct ProjectListView: View {
 
                                                 HStack {
                                                     VStack (alignment: .leading) {
-                                                        Text("no title")
-                                                        Text("작물: \(project.cropType)")
-                                                        Text("\(project.startDate ) ~ \(project.endDate)")
+                                                        HStack {
+                                                            Text(project.name)
+                                                                .font(.system(size: 16, weight: .bold))
+                                                            Text("작물: \(project.cropType)")
+                                                                .font(.system(size: 12, weight: .semibold))
+                                                                .foregroundColor(.gray)
+                                                        }
+                                                        HStack {
+                                                            if project.startDate == nil {
+                                                                Text("날짜를 선택안한상태입니다.")
+                                                            } else {
+                                                                Text("\(project.startDate ?? "" ) ~ \(project.endDate ?? "" )")
+                                                            }
+                                                            
+                                                            
+                                                            Image(systemName: "pencil")
+                                                        }
                                                     }
                                                     .foregroundColor(.black)
                                                     .font(.system(size: 15))
                                                     Spacer()
-                                                    if let cropType = project.cropType {
-                                                        selectCropType(cropType)
-                                                    }
                                                 }
                                                 .padding()
                                                 }//ZStack
-                                            })
+                                            .padding()
+                                        })
                                     }
-                                }
+                                }//VStack
                                 .background(
                                     GeometryReader { proxy in
                                         Color.clear.preference(
@@ -141,8 +137,8 @@ struct ProjectListView: View {
                                         print("height: \(scrollViewSize.height)") // height: 2033.3333333333333
 
                                         if value >= scrollViewSize.height - wholeSize.height {
-                                            projectListVM.loadProjectList(page: page)
                                             page += 1
+                                            projectListVM.loadProjectList(page: page)
                                             print("User has reached the bottom of the ScrollView.")
                                             print(page)
                                         } else {
@@ -160,7 +156,7 @@ struct ProjectListView: View {
                             print(value)
                         }
                     )
-                    .padding(.horizontal)
+//                    .padding(.horizontal)
                 } else {
                     Rectangle()
                         .frame(height: 3)
@@ -176,11 +172,11 @@ struct ProjectListView: View {
                 }
                 
                 HStack {
-                    NavigationLink {
-                        BoardListView()
-                    } label: {
-                        Text("tap")
-                    }
+//                    NavigationLink {
+//                        BoardListView()
+//                    } label: {
+//                        Text("tap")
+//                    }
                     Spacer()
                     NavigationLink {
                         ProjectCreateView()
@@ -202,6 +198,9 @@ struct ProjectListView: View {
         .alert("등록된 작물의 질병을 조회하시겠습니까?", isPresented: $showingIssueAlert) {
             Button("아니오", role: .cancel) {}
             Button("네", role: .destructive) { issuePossibility = true }
+        }
+        .onAppear {
+            projectListVM.loadProjectList(page: page)
         }
     }
 }
