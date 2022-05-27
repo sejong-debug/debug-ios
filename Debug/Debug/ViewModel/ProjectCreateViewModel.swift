@@ -8,25 +8,13 @@
 import Alamofire
 import Foundation
 
-struct ProjectCreateRequestBody: Codable {
-    var name: String
-    var cropType: String
-    var startDate: String
-    var endDate: String
-}
-
-struct ProjectCreateResponseBody: Codable {
-    let success: Bool
-    let data: Int
-}
-
 class ProjectCreateViewModel: ObservableObject {
     
     func createProject(projectCreateRequestBody: ProjectCreateRequestBody) {
         
-        let url = "/projects"
+        let urlString = url + "/projects"
         
-        AF.request("wroing url", method: .post, parameters: projectCreateRequestBody,encoder: JSONParameterEncoder.default)
+        AF.request(urlString, method: .post, parameters: projectCreateRequestBody, encoder: JSONParameterEncoder.default, headers: headers)
             .validate()
             .responseDecodable(of: ProjectCreateResponseBody.self) { response in
                 switch response.result {
