@@ -9,9 +9,13 @@ import SwiftUI
 
 struct DetectView: View {
     @Environment(\.dismiss) var dismiss
-    @State var image: Image?
-    @State var text: String?
-    @State var deseaseType: String?
+    
+    @State var projectID: Int?
+    @State var boardID: Int?
+    
+    @State var check = false
+    
+    @ObservedObject var boardVM = BoardViewModel()
     
     var body: some View {
         VStack(spacing: 40) {
@@ -24,26 +28,55 @@ struct DetectView: View {
                 }
                 Spacer()
             }
-            image?
-                .resizable()
-                .scaledToFit()
-            
-            HStack {
-                Text(text ?? "메모가 존재하지 않음")
-                    .font(.system(size: 21, weight: .medium))
-                    .foregroundColor(.gray)
+            if boardVM.boardData == nil {
+                ProgressView()
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                            check = true
+                         }
+                    }
+                Spacer()
+            } else {
+                AsyncImage(url: URL(string: boardVM.boardData!.boardImageURI)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                } placeholder: {
+                    ProgressView()
+                }//이부분 처리해줘야함
+                HStack {
+                    Text(boardVM.boardData!.memo)
+                        .font(.system(size: 21, weight: .medium))
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                ScrollView(.horizontal) {
+                    HStack {
+                        if boardVM.boardData!.issues.count == 0 {
+                            Text("질병이 존재하지 않아요")
+                                .font(.system(size: 21, weight: .medium))
+                                .foregroundColor(.gray)
+                        } else {
+                            ForEach(boardVM.boardData!.issues, id: \.self) { issue in
+                                Text(issue)
+                                    .font(.system(size: 21, weight: .medium))
+                                    .foregroundColor(.gray)
+                            }
+                        }
+                    }
+                    
+                }
                 Spacer()
             }
-            HStack {
-                Text(deseaseType ?? "질병이 존재하지 않아요")
-                    .font(.system(size: 21, weight: .medium))
-                    .foregroundColor(.gray)
-                Spacer()
-            }
-            Spacer()
         }
         .padding([.leading,.trailing,.bottom])
         .navigationBarHidden(true)
+        .onAppear {
+            boardVM.boardLoad(projectID: projectID!, boardID: boardID!)
+        }
+        .onChange(of: check) { _ in
+            boardVM.boardLoad(projectID: projectID!, boardID: boardID!)
+        }
     }
 }
 
