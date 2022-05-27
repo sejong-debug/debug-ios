@@ -15,7 +15,7 @@ struct ImagePopUpView: View {
     @State private var showingImagePicker = false
     @State private var showCaptureImageView = false
     @State private var createBoardIsActive = false
-    
+    @State var projectID = 0
     var body: some View {
         ZStack {
             if (showCaptureImageView) {
@@ -23,7 +23,7 @@ struct ImagePopUpView: View {
                 .ignoresSafeArea()
             }
             NavigationLink(isActive: $createBoardIsActive, destination: {
-                createMemoView(image: image)//여기 isActive설정하자
+                createBoardView(image: image, projectID: projectID)//여기 isActive설정하자
             }, label: {
                 
             })
