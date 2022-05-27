@@ -25,6 +25,12 @@ struct StatisticsView: View {
                                               "오이", "옥수수", "쥬키니호박", "참외", "콩",
                                               "토마토", "파", "포도", "호박", "참깨", "팥"]
     
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        return formatter
+    }
+    
     var body: some View {
 //        GeometryReader { geometry in
             VStack {
@@ -79,24 +85,40 @@ struct StatisticsView: View {
                 .padding(.vertical)
                 Spacer()
                 ScrollView {
-                    ForEach(statisticsVM.data.last?.diseases.keys.sorted(by: { $0.hashValue < $1.hashValue  }) ?? [], id:\.self) { disease in
-                        HStack {
-                            Text(disease)
-                                .font(.system(size: 16, weight: .semibold))
-                            Spacer()
+                    if statisticsVM.data == nil {
+                        ProgressView()
+                    } else {
+                        let dict = statisticsVM.data!.diseases.sorted(by: {$0.1 > $1.1 })
+                        var total = 0
+                        ForEach(0 ..< dict.count) { index in
                             HStack {
-                                Text("100")
-                                Rectangle()
-                                    .foregroundColor(.green)
-                                    .frame(width: 50)//50이 아니라 계산한 값
+                                Text(dict[index].key)
+                                    .font(.system(size: 16, weight: .semibold))
+                                Spacer()
+                                HStack {
+                                    Text("\(dict[index].value)")
+                                    Rectangle()
+                                        .foregroundColor(.green)
+                                        .frame(width: 50)//50이 아니라 계산한 값
+                                }
+                                .offset(x: 50-230)//max를 230으로, 고정된 계산한값-230으로 시작점 고정
                             }
-                            .offset(x: 50-230)//max를 230으로, 고정된 계산한값-230으로 시작점 고정
+                            .onAppear {
+                                total += dict[index].value
+                            }
                         }
                     }
                 }
             }
             .onChange(of: selectedCropType) { _ in
                 //fetch desease list
+                if selectCheckBox == true {
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: "", endDate: "")
+                } else {
+                    let start = dateFormatter.string(from: startDate)
+                    let end = dateFormatter.string(from: endDate)
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: start, endDate: end)
+                }
             }
             .padding([.leading, .trailing, .bottom])
             .navigationBarHidden(true)
