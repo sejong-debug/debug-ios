@@ -8,80 +8,29 @@
 import Alamofire
 import Foundation
 
-
-struct ProjectListRequest: Codable {
-    let page: Int
-}
-
-// MARK: - Welcome
-struct ProjectListResponse: Codable {
-    let success: Bool
-    let data: DataClass
-    
-    struct DataClass: Codable {
-        let content: [Content]
-        let pageable: Pageable
-        let numberOfElements, number: Int
-        let sort: Sort
-        let first, last: Bool
-        let size: Int
-        let empty: Bool
-    }
-
-    // MARK: - Content
-    struct Content: Codable, Hashable {
-        let projectID: Int
-        let name, cropType, startDate, endDate: String
-        let completed: Bool
-
-        enum CodingKeys: String, CodingKey {
-            case projectID = "projectId"
-            case name, cropType, startDate, endDate, completed
-        }
-    }
-
-    // MARK: - Pageable
-    struct Pageable: Codable {
-        let sort: Sort
-        let pageNumber, pageSize, offset: Int
-        let paged, unpaged: Bool
-    }
-
-    // MARK: - Sort
-    struct Sort: Codable {
-        let sorted, unsorted, empty: Bool
-    }
-
-}
-
-// MARK: - DataClass
-
-
 class ProjectListViewModel: ObservableObject {
     
     @Published var projectListData: [[ProjectListResponse.Content]] = []
     
-    init() {
-        loadProjectList(page: 0)
-    }
+//    init() {
+//        print("프로젝트 리스트 조회 이니셜라이저 생성")
+//        print(UserDefaults.standard.string(forKey: "token")!)
+//        loadProjectList(page: 0)
+//    }
     
     func loadProjectList(page: Int) {
         
-        //URL = /projects?page=0&size=10
-        
-        AF.request("wrong url projectList", method: .post, parameters: ProjectListRequest(page: page), encoder: JSONParameterEncoder.default)
+        let urlString = url + "/projects?page=\(page)&size=10"
+        print(urlString)
+        AF.request(urlString, method: .get, headers: headers)
             .validate()
             .responseDecodable(of: ProjectListResponse.self) { response in
-                
                 switch response.result {
                 case .success(let project):
                     self.projectListData.append(project.data.content)
                 case .failure(let error):
                     print(error)
                 }
-                
             }
-        
     }
-    
 }
