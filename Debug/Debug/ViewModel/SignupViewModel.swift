@@ -8,26 +8,15 @@
 import Alamofire
 import Foundation
 
-struct SignUpReqeustBody: Codable {
-    var username: String
-    var password: String
-    var name: String
-}
-
-struct SignUpResponseBody: Codable {
-    let success: Bool
-}
-
-
 class SignUpViewModel: ObservableObject {
     
     func signUp(username: String,password: String,name: String) {
         
         let signUpRequestBody = SignUpReqeustBody(username: username, password: password, name: name)
+ 
+        let urlString = url + "/members"
         
-        let host = "172.30.1.13"
-        let url = "http://\(host):8080/members"
-        AF.request("wrong url", method: .post, parameters: signUpRequestBody, encoder: JSONParameterEncoder.default)
+        AF.request(urlString, method: .post, parameters: signUpRequestBody, encoder: JSONParameterEncoder.default)
             .validate()
             .responseDecodable(of: SignUpResponseBody.self) { result in
                 switch result.result {
