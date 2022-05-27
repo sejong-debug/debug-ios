@@ -8,20 +8,14 @@
 import Alamofire
 import Foundation
 
-struct LoginRequestBody: Codable {
-    var username: String
-    var password: String
-}
+let host = "192.168.0.27"
+let port = "8080"
+let url = "http://\(host):\(port)"
 
-struct LoginResponseBody: Codable {
-    let success: Bool
-    let data: DataClass
-}
-
-struct DataClass: Codable {
-    let accessToken: String
-}
-
+let headers: HTTPHeaders = [
+    "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)"//나중에 서비스 할때 토큰 넣어줘야함
+//    "Authorization": "bearer token"
+]
 
 class LoginViewModel: ObservableObject {
     
@@ -30,22 +24,21 @@ class LoginViewModel: ObservableObject {
     func login(username: String, password: String) {
         
         let loginRequestBody = LoginRequestBody(username: username, password: password)
-//        print(username,password)
-        let host = "172.30.1.13"
-        let url = "http://\(host):8080/login"
+
+        let urlString = url + "/login"
         
-        AF.request("wrong url login", method: .post,parameters: loginRequestBody,encoder: JSONParameterEncoder.default)
+        AF.request(urlString, method: .post,parameters: loginRequestBody,encoder: JSONParameterEncoder.default)
             .validate()
             .responseDecodable(of: LoginResponseBody.self) { response in
                 switch response.result {
                 case .success(let successResponse):
-//                    UserDefaults.standard.removeObject(forKey: "token")
-//                    UserDefaults.standard.set(successResponse.success,forKey: "token")
-//                    print(UserDefaults.standard.string(forKey: "token")!)
+                    UserDefaults.standard.removeObject(forKey: "token")//기존 토큰 제거해주고
+                    UserDefaults.standard.set(successResponse.data.accessToken,forKey: "token")//토큰 설정하주고
+                    print(UserDefaults.standard.string(forKey: "token")!)//잘 저장 됐는지 출력 해 주고
                     print(successResponse)
                     self.loginResult = true
                 case .failure(let error):
-                    self.loginResult = true
+                    self.loginResult = false
                     print(error)
                 }
         }
