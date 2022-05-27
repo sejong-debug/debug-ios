@@ -7,34 +7,34 @@
 import Alamofire
 import Foundation
 
-struct StatisticsResponseBody: Codable {
-    
-    let success: Bool
-    let data: DataClass
-    
-    struct DataClass: Codable {
-        let cropType: String
-        let projectCount: Int
-        let diseases: [String: Int]
-    }
-}
-
 class StatisticsViewModel: ObservableObject {
     
-    @Published var data: [StatisticsResponseBody.DataClass] = []
+    @Published var data: StatisticsResponseBody.DataClass? = nil
     
-    let headers: HTTPHeaders = [
-        "Authorization": "Basic VXNlcm5hbWU6UGFzc3dvcmQ=",//나중에 서비스 할때 토큰 넣어줘야함
-    ]
+    var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        return formatter
+    }
     
-    func getStatistics() {
-        data = []
-        AF.request("url 통계 설정해야함", method: .get, headers: headers)
+    func getStatistics(cropType: String, startDate: String, endDate: String) {
+        data = nil
+        let urlString = url + "/statistics/crop-types"
+        
+        let end = dateFormatter.string(from: Date())
+        
+        let parameters: Parameters = [
+            "cropType" : cropType,
+            "startDate": startDate == "" ? "0000-01-01" : startDate,
+            "endDate": endDate == "" ? end : endDate
+        ]
+        
+        AF.request(urlString, method: .get, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
             .validate()
             .responseDecodable(of: StatisticsResponseBody.self) { response in
                 switch response.result {
                 case .success(let success):
-                    self.data.append(success.data)
+                    self.data = success.data
                     print(success)
                 case .failure(let error):
                     print(error)
