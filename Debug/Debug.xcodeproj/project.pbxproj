@@ -16,14 +16,24 @@
 		EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */; };
 		EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */; };
 		EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */; };
-		EA75606828375F7A004597DE /* CreateMemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75606728375F7A004597DE /* CreateMemoViewModel.swift */; };
+		EA686D7C283CFC6B0007916B /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D7B283CFC6B0007916B /* LoginModel.swift */; };
+		EA686D7E283CFC840007916B /* SignUpModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D7D283CFC840007916B /* SignUpModel.swift */; };
+		EA686D80283CFCA40007916B /* ProjectCreateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D7F283CFCA40007916B /* ProjectCreateModel.swift */; };
+		EA686D82283CFCBF0007916B /* ProjectListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D81283CFCBF0007916B /* ProjectListModel.swift */; };
+		EA686D84283CFCD90007916B /* CreateBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D83283CFCD90007916B /* CreateBoardModel.swift */; };
+		EA686D86283CFCF00007916B /* StatisticsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D85283CFCF00007916B /* StatisticsModel.swift */; };
+		EA686D88283D49D40007916B /* BoardListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D87283D49D40007916B /* BoardListModel.swift */; };
+		EA686D8A283D4D9D0007916B /* BoardListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D89283D4D9D0007916B /* BoardListViewModel.swift */; };
+		EA686D8C283D5BC80007916B /* BoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D8B283D5BC80007916B /* BoardModel.swift */; };
+		EA686D8E283D5C290007916B /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA686D8D283D5C290007916B /* BoardViewModel.swift */; };
+		EA75606828375F7A004597DE /* boardCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75606728375F7A004597DE /* boardCreateViewModel.swift */; };
 		EA75606A28377981004597DE /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA75606928377981004597DE /* StatisticsViewModel.swift */; };
 		EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F1321280690DE009F59F0 /* BoardListView.swift */; };
 		EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7F13232806960F009F59F0 /* ProjectCreateView.swift */; };
 		EA86331428250885002E2EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC512FF27ED814B00F6E730 /* Assets.xcassets */; };
 		EA8633152825088C002E2EBB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC5130227ED814B00F6E730 /* Preview Assets.xcassets */; };
 		EAB5438E2834C9B3005A2143 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB5438D2834C9B3005A2143 /* StatisticsView.swift */; };
-		EABE8D5527F595A900648A5B /* CreateMemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* CreateMemoView.swift */; };
+		EABE8D5527F595A900648A5B /* CreateBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABE8D5427F595A900648A5B /* CreateBoardView.swift */; };
 		EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FB27ED814A00F6E730 /* DebugApp.swift */; };
 		EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC512FD27ED814A00F6E730 /* LoginView.swift */; };
 		EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAC5130A27ED8BB600F6E730 /* SignupView.swift */; };
@@ -40,12 +50,22 @@
 		EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		EA5D4A1A282CEF9800EE67A2 /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
-		EA75606728375F7A004597DE /* CreateMemoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoViewModel.swift; sourceTree = "<group>"; };
+		EA686D7B283CFC6B0007916B /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		EA686D7D283CFC840007916B /* SignUpModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModel.swift; sourceTree = "<group>"; };
+		EA686D7F283CFCA40007916B /* ProjectCreateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModel.swift; sourceTree = "<group>"; };
+		EA686D81283CFCBF0007916B /* ProjectListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModel.swift; sourceTree = "<group>"; };
+		EA686D83283CFCD90007916B /* CreateBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoardModel.swift; sourceTree = "<group>"; };
+		EA686D85283CFCF00007916B /* StatisticsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsModel.swift; sourceTree = "<group>"; };
+		EA686D87283D49D40007916B /* BoardListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListModel.swift; sourceTree = "<group>"; };
+		EA686D89283D4D9D0007916B /* BoardListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewModel.swift; sourceTree = "<group>"; };
+		EA686D8B283D5BC80007916B /* BoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardModel.swift; sourceTree = "<group>"; };
+		EA686D8D283D5C290007916B /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
+		EA75606728375F7A004597DE /* boardCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = boardCreateViewModel.swift; sourceTree = "<group>"; };
 		EA75606928377981004597DE /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		EA7F1321280690DE009F59F0 /* BoardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListView.swift; sourceTree = "<group>"; };
 		EA7F13232806960F009F59F0 /* ProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateView.swift; sourceTree = "<group>"; };
 		EAB5438D2834C9B3005A2143 /* StatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
-		EABE8D5427F595A900648A5B /* CreateMemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMemoView.swift; sourceTree = "<group>"; };
+		EABE8D5427F595A900648A5B /* CreateBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBoardView.swift; sourceTree = "<group>"; };
 		EAC512F827ED814A00F6E730 /* Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Debug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC512FB27ED814A00F6E730 /* DebugApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugApp.swift; sourceTree = "<group>"; };
 		EAC512FD27ED814A00F6E730 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -88,6 +108,14 @@
 		EABE8D4D27F587B000648A5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EA686D7B283CFC6B0007916B /* LoginModel.swift */,
+				EA686D7D283CFC840007916B /* SignUpModel.swift */,
+				EA686D85283CFCF00007916B /* StatisticsModel.swift */,
+				EA686D7F283CFCA40007916B /* ProjectCreateModel.swift */,
+				EA686D81283CFCBF0007916B /* ProjectListModel.swift */,
+				EA686D87283D49D40007916B /* BoardListModel.swift */,
+				EA686D83283CFCD90007916B /* CreateBoardModel.swift */,
+				EA686D8B283D5BC80007916B /* BoardModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,7 +170,7 @@
 				EAC5131427EDB07000F6E730 /* ProjectListView.swift */,
 				EA7F1321280690DE009F59F0 /* BoardListView.swift */,
 				EAEC350828093AF900F4646F /* ImagePopUpView.swift */,
-				EABE8D5427F595A900648A5B /* CreateMemoView.swift */,
+				EABE8D5427F595A900648A5B /* CreateBoardView.swift */,
 				EA39F07C2824E83400553991 /* DetectView.swift */,
 			);
 			path = View;
@@ -160,10 +188,12 @@
 			children = (
 				EA5D4A0E282CCCF600EE67A2 /* LoginViewModel.swift */,
 				EA5D4A15282CD74A00EE67A2 /* SignUpViewModel.swift */,
+				EA75606928377981004597DE /* StatisticsViewModel.swift */,
 				EA4AFA11282E308700A7A991 /* ProjectCreateViewModel.swift */,
 				EA4AFA19282E436400A7A991 /* ProjectListViewModel.swift */,
-				EA75606728375F7A004597DE /* CreateMemoViewModel.swift */,
-				EA75606928377981004597DE /* StatisticsViewModel.swift */,
+				EA686D89283D4D9D0007916B /* BoardListViewModel.swift */,
+				EA75606728375F7A004597DE /* boardCreateViewModel.swift */,
+				EA686D8D283D5C290007916B /* BoardViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -247,21 +277,31 @@
 				EAC512FE27ED814A00F6E730 /* LoginView.swift in Sources */,
 				EAB5438E2834C9B3005A2143 /* StatisticsView.swift in Sources */,
 				EA5D4A16282CD74A00EE67A2 /* SignUpViewModel.swift in Sources */,
+				EA686D84283CFCD90007916B /* CreateBoardModel.swift in Sources */,
 				EAEC350928093AF900F4646F /* ImagePopUpView.swift in Sources */,
 				EA4AFA1A282E436400A7A991 /* ProjectListViewModel.swift in Sources */,
+				EA686D7C283CFC6B0007916B /* LoginModel.swift in Sources */,
 				EA50ACF8281BB5EC008122C1 /* ImagePicker.swift in Sources */,
+				EA686D8C283D5BC80007916B /* BoardModel.swift in Sources */,
 				EA7F1322280690DE009F59F0 /* BoardListView.swift in Sources */,
 				EA39F07D2824E83400553991 /* DetectView.swift in Sources */,
+				EA686D8A283D4D9D0007916B /* BoardListViewModel.swift in Sources */,
 				EA5D4A1B282CEF9800EE67A2 /* KeyChain.swift in Sources */,
+				EA686D82283CFCBF0007916B /* ProjectListModel.swift in Sources */,
 				EA5D4A0F282CCCF600EE67A2 /* LoginViewModel.swift in Sources */,
 				EA75606A28377981004597DE /* StatisticsViewModel.swift in Sources */,
 				EAC5130B27ED8BB600F6E730 /* SignupView.swift in Sources */,
-				EA75606828375F7A004597DE /* CreateMemoViewModel.swift in Sources */,
+				EA686D80283CFCA40007916B /* ProjectCreateModel.swift in Sources */,
+				EA75606828375F7A004597DE /* boardCreateViewModel.swift in Sources */,
 				EA7F13242806960F009F59F0 /* ProjectCreateView.swift in Sources */,
-				EABE8D5527F595A900648A5B /* CreateMemoView.swift in Sources */,
+				EA686D7E283CFC840007916B /* SignUpModel.swift in Sources */,
+				EABE8D5527F595A900648A5B /* CreateBoardView.swift in Sources */,
+				EA686D88283D49D40007916B /* BoardListModel.swift in Sources */,
 				EAC512FC27ED814A00F6E730 /* DebugApp.swift in Sources */,
 				EAC5131527EDB07000F6E730 /* ProjectListView.swift in Sources */,
 				EA50ACFB281BCC62008122C1 /* CaptureImageView.swift in Sources */,
+				EA686D86283CFCF00007916B /* StatisticsModel.swift in Sources */,
+				EA686D8E283D5C290007916B /* BoardViewModel.swift in Sources */,
 				EA4AFA12282E308700A7A991 /* ProjectCreateViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
