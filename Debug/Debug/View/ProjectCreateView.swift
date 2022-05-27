@@ -126,6 +126,8 @@ struct ProjectCreateView: View {
                                                                        cropType: cropTypes[selectedCropType],
                                                                        startDate: start,
                                                                        endDate: end)
+                            
+                            projectCreateVM.createProject(projectCreateRequestBody: requestBody)
                         }
                         dismiss()
                     } else {
