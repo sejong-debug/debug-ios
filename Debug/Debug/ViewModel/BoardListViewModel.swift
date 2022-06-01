@@ -11,7 +11,7 @@ import Foundation
 class BoardListViewModel: ObservableObject {
     
     @Published var boardListData: [[BoardListResponse.Content]] = []
-
+    @Published var diseaseCount: Int?
     
     func loadBoardList(projectID: Int, page: Int) {
 
@@ -30,4 +30,23 @@ class BoardListViewModel: ObservableObject {
                 }
             }
     }
+    
+    func loadDeseaseCount(projectID: Int) {//질병 갯수
+        
+        let urlString = url + "statistics/projects/\(projectID)"
+        
+        AF.request(urlString, method: .get, headers: headers)
+            .validate()
+            .responseDecodable(of: diseaseResponse.self) { response in
+                switch response.result {
+                case .success(let success):
+                    self.diseaseCount = success.data
+                    print(success.data)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        
+    }
+    
 }
