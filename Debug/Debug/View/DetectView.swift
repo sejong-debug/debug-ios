@@ -27,8 +27,15 @@ struct DetectView: View {
                         .foregroundColor(.black)
                 }
                 Spacer()
+                Text("게시글 조회")
+                    .fontWeight(.semibold)
+                    .foregroundColor(.black)
+                Spacer()
+                Image(systemName: "arrow.backward")
+                    .opacity(0)
             }
             if boardVM.boardData == nil {
+                Spacer()
                 ProgressView()
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
@@ -40,14 +47,14 @@ struct DetectView: View {
                 AsyncImage(url: URL(string: boardVM.boardData!.boardImageURI)) { image in
                     image
                         .resizable()
-                        .scaledToFit()
+                        .frame(width: 390, height: 390)
                 } placeholder: {
                     ProgressView()
                 }//이부분 처리해줘야함
                 HStack {
                     Text(boardVM.boardData!.memo)
                         .font(.system(size: 21, weight: .medium))
-                        .foregroundColor(.gray)
+                        .foregroundColor(.black)
                     Spacer()
                 }
                 ScrollView(.horizontal) {
@@ -56,11 +63,12 @@ struct DetectView: View {
                             Text("질병이 존재하지 않아요")
                                 .font(.system(size: 21, weight: .medium))
                                 .foregroundColor(.gray)
+                                .multilineTextAlignment(.center)
                         } else {
                             ForEach(boardVM.boardData!.issues, id: \.self) { issue in
                                 Text(issue)
                                     .font(.system(size: 21, weight: .medium))
-                                    .foregroundColor(.gray)
+                                    .foregroundColor(.red)
                             }
                         }
                     }
@@ -82,6 +90,8 @@ struct DetectView: View {
 
 struct DetectView_Previews: PreviewProvider {
     static var previews: some View {
-        DetectView()
+        let boardVM = BoardViewModel()
+        boardVM.boardData = BoardResponse.DataClass(boardID: 1, memo: "기록", boardImageID: 1, boardImageURI: "https://picsum.photos/seed/picsum/200/300", issues: ["질병1","질병2"])
+        return DetectView(boardVM: boardVM)
     }
 }
