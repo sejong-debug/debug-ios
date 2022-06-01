@@ -8,12 +8,9 @@
 import SwiftUI
 
 struct ProjectListView: View {
-    @State private var showingLogoutAlert = false
-    @State private var showingIssueAlert = false
+    @State var showingConfirmation = false
     @State var logoutPossibility = false
-    @State var issuePossibility = false
-    @State var projectList: [String] = ["project1"]
-    //실제로 ProjectListView 등장할때 onappear를 통해 projectList를 서버에서 받아와야함
+    @State var goToStatics = false
     @ObservedObject var projectListVM = ProjectListViewModel()
     @State var page = 0 //서버에 요청 페이지
     let spaceName = "scroll"
@@ -21,9 +18,6 @@ struct ProjectListView: View {
     @State var wholeSize: CGSize = .zero
     @State var scrollViewSize: CGSize = .zero
     @State var projectID: Int = 0
-    let sesame = Image("참깨 이모지")
-    let adzukiBeans = Image("팥 이모지")
-    let bean = Image("콩 이모지")
     
     let image = Image(systemName: "plus.circle")
     
@@ -38,87 +32,93 @@ struct ProjectListView: View {
             NavigationLink(isActive: $logoutPossibility) {
                 LoginView()
             } label: { }
-            Circle()
-                .frame(width: 310, height: 310)
-                .foregroundColor(.green)
-                .position(x: 60, y: 60)
+            NavigationLink(isActive: $goToStatics) {
+                StatisticsView()
+            } label: { }
+
             VStack {
                 HStack {
-                    VStack {
-                        TextCompose()
-                            .padding(.horizontal)
-                            .foregroundColor(.white)
-                            .font(.system(size: 40))
-                    }
+                    Image(systemName: "list.bullet")
+                        .opacity(0)
                     Spacer()
-                    NavigationLink {
-                        StatisticsView()
-                    } label: {
-                        Text("프로젝트 통계")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.green)
-                    }
-                    .padding(5)
-                    .background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(lineWidth: 2)
-                            .foregroundColor(.green)
-                    
-                    )
-                    .offset(y: 80)
-                    .padding(.trailing)
-                }
+                    Text("프로젝트 목록")
+                        .fontWeight(.semibold)
+                        .foregroundColor(.black)
+                    Spacer()
+                    Image(systemName: "list.bullet")
+                        .onTapGesture {
+                            showingConfirmation = true
+                        }
+                        .confirmationDialog("원하는 기능을 선택하세요.", isPresented: $showingConfirmation) {
+                            
+                            Button("로그아웃") {
+                                var transaction = Transaction(animation: .linear)
+                                transaction.disablesAnimations = true
 
-                if !projectListVM.projectListData.isEmpty {//사실 true 가 아니고 projectList가 비어있지 않은 상태를 나타내야함
-                    Rectangle()
-                        .frame(height: 3)
+                                withTransaction(transaction) {
+                                    logoutPossibility = true
+                                }
+                            }
+                            Button("통계확인하기") {
+                                goToStatics = true
+                            }
+                        }
+                }
+                .padding(.horizontal)
+
+                if !projectListVM.projectListData.isEmpty {
                     ChildSizeReader(size: $wholeSize) {
                         ScrollView {
                             ChildSizeReader(size: $scrollViewSize) {
-                                VStack(spacing: 20) {
+                                VStack {
+//                                    HStack {
+//                                        Text("total disease:")
+//                                            .font(.system(size: 14, weight: .medium))
+//                                            .foregroundColor(.black)
+//                                        Text("\(projectListVM.diseaseCount ?? 0)")
+//                                            .font(.system(size: 14, weight: .medium))
+//                                            .foregroundColor(.red)
+//                                        Spacer()
+//                                    }
+//                                    .padding([.leading, .trailing, .top])
                                     ForEach(projectListVM.projectListData.flatMap{ $0 }, id: \.self) { project in
                                         NavigationLink(destination: {
-                                            //BoardListView로 이동해야함
                                             let projectID = project.projectID
                                             BoardListView(projectID: projectID)
                                         }, label: {
-                                            ZStack {
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .foregroundColor(.white)
-                                                    .frame(height: 80)
-                                                    .shadow(color: .gray, radius: 1, x: 0, y: 5)
-                                                RoundedRectangle(cornerRadius: 15)
-                                                    .stroke(lineWidth: 1)
-                                                    .foregroundColor(.gray)
-                                                    .frame(height: 80)
-
-                                                HStack {
-                                                    VStack (alignment: .leading) {
-                                                        HStack {
-                                                            Text(project.name)
-                                                                .font(.system(size: 16, weight: .bold))
-                                                            Text("작물: \(project.cropType)")
-                                                                .font(.system(size: 12, weight: .semibold))
-                                                                .foregroundColor(.gray)
-                                                        }
-                                                        HStack {
-                                                            if project.startDate == nil {
-                                                                Text("날짜를 선택안한상태입니다.")
-                                                            } else {
-                                                                Text("\(project.startDate ?? "" ) ~ \(project.endDate ?? "" )")
-                                                            }
-                                                            
-                                                            
-                                                            Image(systemName: "pencil")
-                                                        }
+                                            HStack {
+                                                VStack (alignment: .leading) {
+                                                    HStack {
+                                                        Text(project.name)
+                                                            .font(.system(size: 16, weight: .bold))
+                                                            .foregroundColor(project.completed == false ? .green : .gray)
+                                                        Text("작물: \(project.cropType)")
+                                                            .font(.system(size: 12, weight: .semibold))
+                                                            .foregroundColor(project.completed == false ? .black : .gray)
+                                                        Spacer()
+                                                        Text(project.completed == true ? "프로젝트 완료" : "프로젝트 진행중")
+                                                            .foregroundColor(project.completed == false ? .black : .gray)
                                                     }
-                                                    .foregroundColor(.black)
-                                                    .font(.system(size: 15))
-                                                    Spacer()
+                                                    HStack {
+                                                        if project.startDate == nil {
+                                                            Text("날짜를 선택안한상태입니다.")
+                                                                .foregroundColor(project.completed == false ? .black : .gray)
+                                                        } else {
+                                                            Text("\(project.startDate ?? "" ) ~ \(project.endDate ?? "" )")
+                                                                .foregroundColor(project.completed == false ? .black : .gray)
+                                                        }
+                                                        Spacer()
+                                                        Text("프로젝트로 이동하기>")
+                                                            .font(.system(size:15, weight: .semibold))
+                                                            .foregroundColor(project.completed == false ? .black : .gray)
+                                                    }
+                                                    Divider()
                                                 }
-                                                .padding()
-                                                }//ZStack
-                                            .padding()
+                                                .foregroundColor(.black)
+                                                .font(.system(size: 15))
+                                                Spacer()
+                                            }
+                                            .padding([.horizontal, .top])
                                         })
                                     }
                                 }//VStack
@@ -156,11 +156,7 @@ struct ProjectListView: View {
                             print(value)
                         }
                     )
-//                    .padding(.horizontal)
                 } else {
-                    Rectangle()
-                        .frame(height: 3)
-                        .foregroundColor(Color(hue: 0.054, saturation: 0.0, brightness: 0.724))
                     Spacer()
                     Text("프로젝트가 존재하지 않습니다.")
                         .font(.system(size: 14))
@@ -172,11 +168,6 @@ struct ProjectListView: View {
                 }
                 
                 HStack {
-//                    NavigationLink {
-//                        BoardListView()
-//                    } label: {
-//                        Text("tap")
-//                    }
                     Spacer()
                     NavigationLink {
                         ProjectCreateView()
@@ -191,16 +182,10 @@ struct ProjectListView: View {
             }
             .navigationBarHidden(true)
         }
-        .alert("로그아웃 하시겠습니까?", isPresented: $showingLogoutAlert) {
-            Button("아니오", role: .cancel) {}
-            Button("네", role: .destructive) { logoutPossibility = true }
-        }
-        .alert("등록된 작물의 질병을 조회하시겠습니까?", isPresented: $showingIssueAlert) {
-            Button("아니오", role: .cancel) {}
-            Button("네", role: .destructive) { issuePossibility = true }
-        }
         .onAppear {
-            projectListVM.loadProjectList(page: page)
+            if page == 0 {
+                projectListVM.loadProjectList(page: page)
+            }
         }
     }
 }
@@ -264,7 +249,23 @@ struct TextCompose: View {
 
 
 struct ProjectListView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ProjectListView()
+        let projectListVM = ProjectListViewModel()
+        projectListVM.projectListData.append([ProjectListResponse.Content(
+                                                                        projectID: 1,
+                                                                        name: "projectName1",
+                                                                        cropType: "팥",
+                                                                        startDate: "2021-01-01",
+                                                                        endDate: "2021-01-15",
+                                                                        completed:false),
+                                              ProjectListResponse.Content(
+                                                                        projectID: 2,
+                                                                        name: "projectName2",
+                                                                        cropType: "콩",
+                                                                        startDate: "2022-03-05",
+                                                                        endDate: "2022-03-05",
+                                                                        completed: true)])
+        return ProjectListView(projectListVM: projectListVM)
     }
 }
