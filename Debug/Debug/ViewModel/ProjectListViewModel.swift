@@ -11,7 +11,7 @@ import Foundation
 class ProjectListViewModel: ObservableObject {
     
     @Published var projectListData: [[ProjectListResponse.Content]] = []
-    
+//    @Published var diseaseCount: Int?
 //    init() {
 //        print("프로젝트 리스트 조회 이니셜라이저 생성")
 //        print(UserDefaults.standard.string(forKey: "token")!)
@@ -33,4 +33,22 @@ class ProjectListViewModel: ObservableObject {
                 }
             }
     }
+    
+//    func loadDeseaseCount(projectID: Int) {//질병 갯수
+//        
+//        let urlString = url + "statistics/projects/\(projectID)"
+//        
+//        AF.request(urlString, method: .get, headers: headers)
+//            .validate()
+//            .responseDecodable(of: deseaseResponse.self) { response in
+//                switch response.result {
+//                case .success(let success):
+//                    self.diseaseCount = success.data
+//                    print(success.data)
+//                case .failure(let error):
+//                    print(error)
+//                }
+//            }
+//        
+//    }
 }
