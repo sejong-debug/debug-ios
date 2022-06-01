@@ -13,8 +13,7 @@ let port = "8080"
 let url = "http://\(host):\(port)"
 
 let headers: HTTPHeaders = [
-    "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)"//나중에 서비스 할때 토큰 넣어줘야함
-//    "Authorization": "bearer token"
+//    "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)"//나중에 서비스 할때 토큰 넣어줘야함
 ]
 
 class LoginViewModel: ObservableObject {
