@@ -32,7 +32,7 @@ struct StatisticsView: View {
     }
     
     var body: some View {
-//        GeometryReader { geometry in
+        GeometryReader { geometry in
             VStack {
                 HStack {
                     Button {
@@ -86,10 +86,32 @@ struct StatisticsView: View {
                 Spacer()
                 ScrollView {
                     if statisticsVM.data == nil {
-                        ProgressView()
+//                        ProgressView()
+                        let value1: CGFloat = 85
+                        let value2: CGFloat = 40
+                        let sum = value1+value2
+                        let max = value1
+                        VStack {
+                            HStack {
+                                Text("Hello")
+                                Spacer()
+                                Rectangle()
+                                    .foregroundColor(.green)
+                                    .frame(width: value1*280/sum)
+                                    .offset(x: -(max*280/sum-value1*280/sum))
+                            }
+                            HStack {
+                                Text("Hi")
+                                Spacer()
+                                Rectangle()
+                                    .frame(width: value2*280/sum)
+                                    .offset(x: -(value1*280/sum-value2*280/sum))
+                            }
+                        }
                     } else {
                         let dict = statisticsVM.data!.diseases.sorted(by: {$0.1 > $1.1 })
-                        var total = 0
+                        var total: CGFloat = 1
+                        let maxValue = CGFloat(statisticsVM.data!.diseases.values.max()!)
                         ForEach(0 ..< dict.count) { index in
                             HStack {
                                 Text(dict[index].key)
@@ -99,12 +121,12 @@ struct StatisticsView: View {
                                     Text("\(dict[index].value)")
                                     Rectangle()
                                         .foregroundColor(.green)
-                                        .frame(width: 50)//50이 아니라 계산한 값
+                                        .frame(width: CGFloat(dict[index].value)*280/total)//50이 아니라 계산한 값
                                 }
-                                .offset(x: 50-230)//max를 230으로, 고정된 계산한값-230으로 시작점 고정
+                                .offset(x: -(maxValue*280/total-CGFloat((dict[index].value))*280/total))
                             }
                             .onAppear {
-                                total += dict[index].value
+                                total += CGFloat(dict[index].value)
                             }
                         }
                     }
@@ -122,7 +144,7 @@ struct StatisticsView: View {
             }
             .padding([.leading, .trailing, .bottom])
             .navigationBarHidden(true)
-//        }
+        }
     }
 }
 
