@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BoardListView: View {
     @Environment(\.dismiss) var dismiss
+    @State var showingConfirmation = false
     @State var showingImagePopUp = false
     
     let image = Image(systemName: "plus.circle")
@@ -19,16 +20,24 @@ struct BoardListView: View {
     @State var isActive = false
     
     @State var page = 0
-    
+    @State var logoutPossibility = false
+    @State var goToStatics = false
     let spaceName = "scroll"
 
     @State var wholeSize: CGSize = .zero
     @State var scrollViewSize: CGSize = .zero
     @State var projectID: Int = 0
+    //완료 여부 받기
     @ObservedObject var boardListVM = BoardListViewModel()
     var body: some View {
         NavigationView {
             ZStack {
+                NavigationLink(isActive: $logoutPossibility) {
+                    LoginView()
+                } label: { }
+                NavigationLink(isActive: $goToStatics) {
+                    StatisticsView()
+                } label: { }
                 VStack {
                     HStack {
                         Button {
@@ -38,8 +47,28 @@ struct BoardListView: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        Text("작물조회")
+                        Text("게시글 목록")
+                            .fontWeight(.bold)
                         Spacer()
+
+                        Image(systemName: "list.bullet")
+                            .onTapGesture {
+                                showingConfirmation = true
+                            }
+                            .confirmationDialog("원하는 기능을 선택하세요.", isPresented: $showingConfirmation) {
+                                
+                                Button("로그아웃") {
+                                    var transaction = Transaction(animation: .linear)
+                                    transaction.disablesAnimations = true
+
+                                    withTransaction(transaction) {
+                                        logoutPossibility = true
+                                    }
+                                }
+                                Button("통계확인하기") {
+                                    goToStatics = true
+                                }
+                            }
                         
                     }
                     .padding([.leading,.trailing,.bottom])
@@ -48,6 +77,22 @@ struct BoardListView: View {
                             ScrollView {
                                 ChildSizeReader(size: $scrollViewSize) {
                                     VStack(spacing: 20) {
+                                        HStack {
+                                            Text("total disease:")
+                                                .font(.system(size: 14, weight: .medium))
+                                                .foregroundColor(.black)
+                                            Text("\(boardListVM.diseaseCount ?? 0)")
+                                                .font(.system(size: 16, weight: .medium))
+                                                .foregroundColor(.red)
+                                            Spacer()
+                                            Button {
+                                                //완료 action
+                                            } label: {
+                                                Text("프로젝트 완료")
+                                                Image(systemName: "checkmark.square")
+                                            }
+                                            .foregroundColor(.black)
+                                        }
                                         ForEach(boardListVM.boardListData.flatMap{ $0 }, id: \.self) { board in
                                             NavigationLink(destination: {
                                                 DetectView(projectID: projectID, boardID: board.boardID)
@@ -56,20 +101,23 @@ struct BoardListView: View {
                                                     AsyncImage(url: URL(string: board.boardImageURI)) { image in
                                                         image
                                                             .resizable()
-                                                            .scaledToFit()
+                                                            .frame(width: 80, height: 80)
                                                     } placeholder: {
                                                         ProgressView()
                                                     }
-                                                    .frame(width: 70, height: 70) //이미지 처리 부분
                                                     Spacer()
-                                                    Text(board.memo)
-                                                        .padding(.horizontal)
+                                                    VStack {
+                                                        Spacer()
+                                                        HStack {
+                                                            Spacer()
+                                                            Text("자세히 보기>")
+                                                                .font(.system(size: 15))
+                                                                .foregroundColor(.black)
+                                                        }
+                                                        Divider()
+                                                    }
                                                 }
-                                                .background(
-                                                    RoundedRectangle(cornerRadius: 15)
-                                                        .stroke(lineWidth: 2)
-                                                        .foregroundColor(.green)
-                                                )
+                                                .frame(height:90)
                                             })
                                         }
                                     }
@@ -150,7 +198,9 @@ struct BoardListView: View {
 struct CropListView_Previews: PreviewProvider {
     
     static var previews: some View {
-//        let project = ProjectListResponse(name: "testname", startDate: "2020.01.01", endDate: "2020.01.02", cropType: "팥", error: nil)
-        BoardListView()
+        
+        let boardListVM = BoardListViewModel()
+        boardListVM.boardListData.append([BoardListResponse.Content(boardID: 3, memo: "게시글 또 작성", boardImageID: 3, boardImageURI: "https://picsum.photos/200/300/?blur=2"),BoardListResponse.Content(boardID: 3, memo: "게시글 작성", boardImageID: 3, boardImageURI: "https://picsum.photos/200/300?grayscale")])
+        return BoardListView(boardListVM: boardListVM)
     }
 }
