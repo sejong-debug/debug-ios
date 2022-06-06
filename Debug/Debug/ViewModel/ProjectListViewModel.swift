@@ -20,6 +20,10 @@ class ProjectListViewModel: ObservableObject {
     
     func loadProjectList(page: Int) {
         
+//        if page == 0 {
+//            projectListData = []
+//        }
+        
         let urlString = url + "/projects?page=\(page)&size=10"
         print(urlString)
         AF.request(urlString, method: .get, headers: headers)

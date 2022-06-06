@@ -71,20 +71,11 @@ struct ProjectListView: View {
                         ScrollView {
                             ChildSizeReader(size: $scrollViewSize) {
                                 VStack {
-//                                    HStack {
-//                                        Text("total disease:")
-//                                            .font(.system(size: 14, weight: .medium))
-//                                            .foregroundColor(.black)
-//                                        Text("\(projectListVM.diseaseCount ?? 0)")
-//                                            .font(.system(size: 14, weight: .medium))
-//                                            .foregroundColor(.red)
-//                                        Spacer()
-//                                    }
-//                                    .padding([.leading, .trailing, .top])
                                     ForEach(projectListVM.projectListData.flatMap{ $0 }, id: \.self) { project in
                                         NavigationLink(destination: {
                                             let projectID = project.projectID
-                                            BoardListView(projectID: projectID)
+                                            let completed = project.completed
+                                            BoardListView(projectID: projectID, completed: completed)
                                         }, label: {
                                             HStack {
                                                 VStack (alignment: .leading) {
@@ -183,8 +174,9 @@ struct ProjectListView: View {
             .navigationBarHidden(true)
         }
         .onAppear {
-            if page == 0 {
-                projectListVM.loadProjectList(page: page)
+            projectListVM.projectListData = []
+            for i in 0 ... page {
+                projectListVM.loadProjectList(page: i)
             }
         }
     }
@@ -266,6 +258,7 @@ struct ProjectListView_Previews: PreviewProvider {
                                                                         startDate: "2022-03-05",
                                                                         endDate: "2022-03-05",
                                                                         completed: true)])
-        return ProjectListView(projectListVM: projectListVM)
+                
+        return NavigationView { ProjectListView(projectListVM: projectListVM) }
     }
 }

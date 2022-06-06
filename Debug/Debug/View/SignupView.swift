@@ -24,7 +24,8 @@ struct SignupView: View {
             TextField("이름", text: $name)
                 .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
-                
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             HStack {
                 Text("아이디 설정")
                 Spacer()
@@ -32,14 +33,17 @@ struct SignupView: View {
             TextField("아이디", text: $username)
                 .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
-                
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             HStack {
                 Text("비밀번호 설정")
                 Spacer()
             }
-            TextField("비밀번호", text: $password)
+            SecureField("비밀번호", text: $password)
                 .keyboardType(.default)
                 .textFieldStyle(.roundedBorder)
+                .disableAutocorrection(true)
+                .autocapitalization(.none)
             Button {
                 signUpVM.signUp(username: username, password: password, name: name)
                 dismiss()

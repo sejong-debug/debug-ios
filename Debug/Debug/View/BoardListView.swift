@@ -27,11 +27,13 @@ struct BoardListView: View {
     @State var wholeSize: CGSize = .zero
     @State var scrollViewSize: CGSize = .zero
     @State var projectID: Int = 0
+    @State var completed: Bool = false
     //완료 여부 받기
     @ObservedObject var boardListVM = BoardListViewModel()
     var body: some View {
         NavigationView {
             ZStack {
+                
                 NavigationLink(isActive: $logoutPossibility) {
                     LoginView()
                 } label: { }
@@ -87,11 +89,13 @@ struct BoardListView: View {
                                             Spacer()
                                             Button {
                                                 //완료 action
+                                                boardListVM.modifyCompleted(completed: completed)
+                                                completed.toggle()
                                             } label: {
                                                 Text("프로젝트 완료")
-                                                Image(systemName: "checkmark.square")
+                                                Image(systemName: completed == false ? "rectangle" : "checkmark.rectangle")
                                             }
-                                            .foregroundColor(.black)
+                                            .foregroundColor(completed == false ? .black : .gray )
                                         }
                                         ForEach(boardListVM.boardListData.flatMap{ $0 }, id: \.self) { board in
                                             NavigationLink(destination: {
@@ -188,9 +192,11 @@ struct BoardListView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            if page == 0 {
-                boardListVM.loadBoardList(projectID: projectID, page: page)
+            boardListVM.boardListData = []
+            for i in 0 ... page {
+                boardListVM.loadBoardList(projectID: projectID, page: i)
             }
+            boardListVM.loadDeseaseCount(projectID: projectID)
         }
     }
 }

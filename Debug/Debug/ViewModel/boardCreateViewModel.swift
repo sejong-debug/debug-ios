@@ -14,9 +14,8 @@ class boardCreateViewModel: ObservableObject {
     @Published var boardID: Int? = nil
     
     let headers: HTTPHeaders = [
-//        "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)",//나중에 서비스 할때 토큰 넣어줘야함
-//        "Content-Type": "multipart/form-data"
-    //    "Authorization": "bearer token"
+        "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)",//나중에 서비스 할때 토큰 넣어줘야함
+        "Content-Type": "multipart/form-data"
     ]
     
     func uploadBoard(createBoard: createBoardRequest, projectID: Int) {

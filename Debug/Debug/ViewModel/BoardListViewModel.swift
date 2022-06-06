@@ -23,7 +23,7 @@ class BoardListViewModel: ObservableObject {
                 switch response.result {
                 case .success(let board):
                     self.boardListData.append(board.data.content)
-                    print(board)
+                    print("boardLoad success")
                 case .failure(let error):
                     print("boardList load error")
                     print(error)
@@ -33,7 +33,7 @@ class BoardListViewModel: ObservableObject {
     
     func loadDeseaseCount(projectID: Int) {//질병 갯수
         
-        let urlString = url + "statistics/projects/\(projectID)"
+        let urlString = url + "/statistics/projects/\(projectID)"
         
         AF.request(urlString, method: .get, headers: headers)
             .validate()
@@ -49,4 +49,23 @@ class BoardListViewModel: ObservableObject {
         
     }
     
+    func modifyCompleted(completed: Bool) {
+        
+        let parameters: Parameters = [
+            "completed" : false
+        ]
+
+        let urlString = url + "/projects/1/completed"
+        
+        AF.request(urlString, method: .put, parameters: parameters, encoding: URLEncoding.queryString, headers: headers)
+            .validate()
+            .responseDecodable(of: CompletedResponseField.self) { response in
+                switch response.result {
+                case .success(let success):
+                    print(success)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+    }
 }

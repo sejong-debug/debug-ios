@@ -8,12 +8,12 @@
 import Alamofire
 import Foundation
 
-let host = "192.168.0.27"
+let host = "192.168.0.21"
 let port = "8080"
 let url = "http://\(host):\(port)"
 
 let headers: HTTPHeaders = [
-//    "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)"//나중에 서비스 할때 토큰 넣어줘야함
+    "Authorization": "Bearer \(UserDefaults.standard.string(forKey: "token")!)"//나중에 서비스 할때 토큰 넣어줘야함
 ]
 
 class LoginViewModel: ObservableObject {

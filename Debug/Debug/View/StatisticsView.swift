@@ -87,46 +87,49 @@ struct StatisticsView: View {
                 ScrollView {
                     if statisticsVM.data == nil {
 //                        ProgressView()
-                        let value1: CGFloat = 85
-                        let value2: CGFloat = 40
-                        let sum = value1+value2
-                        let max = value1
-                        VStack {
-                            HStack {
-                                Text("Hello")
-                                Spacer()
-                                Rectangle()
-                                    .foregroundColor(.green)
-                                    .frame(width: value1*280/sum)
-                                    .offset(x: -(max*280/sum-value1*280/sum))
-                            }
-                            HStack {
-                                Text("Hi")
-                                Spacer()
-                                Rectangle()
-                                    .frame(width: value2*280/sum)
-                                    .offset(x: -(value1*280/sum-value2*280/sum))
-                            }
-                        }
+//                        let value1: CGFloat = 55
+//                        let value2: CGFloat = 24
+//                        let sum = value1+value2
+//                        let max = value1
+//                        VStack(alignment: .leading) {
+//                            HStack(spacing: 80) {
+//                                Text("Hello")
+//                                    .frame(width: 40)
+//                                Rectangle()
+//                                    .foregroundColor(.green)
+//                                    .frame(width: value1*280/sum)
+//                            }
+//                            HStack(spacing: 80) {
+//                                Text("Hi")
+//                                    .frame(width: 40)
+//                                Rectangle()
+//                                    .frame(width: value2*280/sum)
+//                            }
+//                        }
+//                        .frame(maxWidth: .infinity)
                     } else {
                         let dict = statisticsVM.data!.diseases.sorted(by: {$0.1 > $1.1 })
                         var total: CGFloat = 1
-                        let maxValue = CGFloat(statisticsVM.data!.diseases.values.max()!)
-                        ForEach(0 ..< dict.count) { index in
-                            HStack {
-                                Text(dict[index].key)
-                                    .font(.system(size: 16, weight: .semibold))
-                                Spacer()
-                                HStack {
-                                    Text("\(dict[index].value)")
-                                    Rectangle()
-                                        .foregroundColor(.green)
-                                        .frame(width: CGFloat(dict[index].value)*280/total)//50이 아니라 계산한 값
+//                        let maxValue = CGFloat(statisticsVM.data!.diseases.values.max()!)
+                        VStack(alignment: .leading) {
+                            ForEach(0 ..< dict.count) { index in
+                                HStack(spacing: 60) {
+                                    Text(dict[index].key)
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .frame(width: 100)
+                                    HStack {
+                                        Text("\(dict[index].value)")
+                                        .font(.system(size: 14, weight: .semibold))
+                                        .frame(width: 30)
+                                        Rectangle()
+                                            .foregroundColor(.green)
+                                            .frame(width: CGFloat((dict[index].value*3)),
+                                                   height: 14)//50이 아니라 계산한 값
+                                    }
                                 }
-                                .offset(x: -(maxValue*280/total-CGFloat((dict[index].value))*280/total))
-                            }
-                            .onAppear {
-                                total += CGFloat(dict[index].value)
+                                .onAppear {
+                                    total += CGFloat(dict[index].value)
+                                }
                             }
                         }
                     }
