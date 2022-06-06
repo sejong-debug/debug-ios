@@ -20,19 +20,9 @@ struct DetectView: View {
     var body: some View {
         VStack(spacing: 40) {
             HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "arrow.backward")
-                        .foregroundColor(.black)
-                }
-                Spacer()
                 Text("게시글 조회")
                     .fontWeight(.semibold)
                     .foregroundColor(.black)
-                Spacer()
-                Image(systemName: "arrow.backward")
-                    .opacity(0)
             }
             if boardVM.boardData == nil {
                 Spacer()
@@ -75,13 +65,15 @@ struct DetectView: View {
                     
                 }
                 Spacer()
+                Button {
+                    dismiss()
+                } label: {
+                    Text("확인")
+                }
             }
         }
         .padding([.leading,.trailing,.bottom])
         .navigationBarHidden(true)
-        .onAppear {
-            boardVM.boardLoad(projectID: projectID!, boardID: boardID!)
-        }
         .onChange(of: check) { _ in
             boardVM.boardLoad(projectID: projectID!, boardID: boardID!)
         }

@@ -13,6 +13,8 @@ class BoardListViewModel: ObservableObject {
     @Published var boardListData: [[BoardListResponse.Content]] = []
     @Published var diseaseCount: Int?
     
+    @Published var load = 0
+    
     func loadBoardList(projectID: Int, page: Int) {
 
         let urlString = url + "/projects" + "/\(projectID)/boards?page=\(page)&size=10"
