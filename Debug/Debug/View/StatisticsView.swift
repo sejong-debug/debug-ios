@@ -16,7 +16,7 @@ struct StatisticsView: View {
     @State private var endDate = Date()
     
     @State private var selectedCropType = 0
-    
+    @State var total: CGFloat = 0
     @ObservedObject var statisticsVM = StatisticsViewModel()
     
     @State private var cropTypes: [String] = ["가지", "감자", "고추", "단호박", "들깨",
@@ -109,7 +109,7 @@ struct StatisticsView: View {
 //                        .frame(maxWidth: .infinity)
                     } else {
                         let dict = statisticsVM.data!.diseases.sorted(by: {$0.1 > $1.1 })
-                        var total: CGFloat = 1
+
 //                        let maxValue = CGFloat(statisticsVM.data!.diseases.values.max()!)
                         VStack(alignment: .leading) {
                             ForEach(0 ..< dict.count) { index in
@@ -121,10 +121,15 @@ struct StatisticsView: View {
                                         Text("\(dict[index].value)")
                                         .font(.system(size: 14, weight: .semibold))
                                         .frame(width: 30)
-                                        Rectangle()
-                                            .foregroundColor(.green)
-                                            .frame(width: CGFloat((dict[index].value*3)),
-                                                   height: 14)//50이 아니라 계산한 값
+                                        if total != 0 {
+                                            Rectangle()
+                                                .foregroundColor(.green)
+                                                .frame(width: CGFloat((CGFloat(dict[index].value)/total*100)),
+                                                       height: 14)//50이 아니라 계산한 값
+                                        }
+                                    }
+                                    .onAppear {
+                                        print(CGFloat((CGFloat(dict[index].value)/total*100)))
                                     }
                                 }
                                 .onAppear {
@@ -137,6 +142,29 @@ struct StatisticsView: View {
             }
             .onChange(of: selectedCropType) { _ in
                 //fetch desease list
+                total = 0
+                if selectCheckBox == true {
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: "", endDate: "")
+                } else {
+                    let start = dateFormatter.string(from: startDate)
+                    let end = dateFormatter.string(from: endDate)
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: start, endDate: end)
+                }
+            }
+            .onChange(of: endDate) { _ in
+                //fetch desease list
+                total = 0
+                if selectCheckBox == true {
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: "", endDate: "")
+                } else {
+                    let start = dateFormatter.string(from: startDate)
+                    let end = dateFormatter.string(from: endDate)
+                    statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: start, endDate: end)
+                }
+            }
+            .onChange(of: startDate) { _ in
+                //fetch desease list
+                total = 0
                 if selectCheckBox == true {
                     statisticsVM.getStatistics(cropType: cropTypes[selectedCropType], startDate: "", endDate: "")
                 } else {

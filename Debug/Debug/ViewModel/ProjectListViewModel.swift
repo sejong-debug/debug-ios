@@ -31,9 +31,9 @@ class ProjectListViewModel: ObservableObject {
             .responseDecodable(of: ProjectListResponse.self) { response in
                 switch response.result {
                 case .success(let project):
-//                    if !project.data.content.isEmpty {
+                    if !project.data.content.isEmpty {
                         self.projectListData.append(project.data.content)
-//                    }
+                    }
                     print(project)
                 case .failure(let error):
                     print(error)

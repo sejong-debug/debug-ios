@@ -24,8 +24,10 @@ class BoardListViewModel: ObservableObject {
             .responseDecodable(of: BoardListResponse.self) { response in
                 switch response.result {
                 case .success(let board):
-                    self.boardListData.append(board.data.content)
-                    print("boardLoad success")
+                    if !board.data.content.isEmpty {
+                        self.boardListData.append(board.data.content)
+                        print("boardLoad success")
+                    }
                 case .failure(let error):
                     print("boardList load error")
                     print(error)

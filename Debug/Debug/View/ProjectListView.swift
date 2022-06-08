@@ -175,9 +175,11 @@ struct ProjectListView: View {
         }
         .onAppear {
             projectListVM.projectListData = []
-            for i in 0 ... page {
-                projectListVM.loadProjectList(page: i)
-            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                for i in 0 ... page {
+                    projectListVM.loadProjectList(page: i)
+                }
+             }
         }
     }
 }
