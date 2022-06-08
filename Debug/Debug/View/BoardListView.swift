@@ -28,7 +28,9 @@ struct BoardListView: View {
     @State var scrollViewSize: CGSize = .zero
     @State var projectID: Int = 0
     @State var completed: Bool = false
+    @State var check = false
     //완료 여부 받기
+    @State var refresh = 0
     @ObservedObject var boardListVM = BoardListViewModel()
     var body: some View {
         NavigationView {
@@ -148,6 +150,7 @@ struct BoardListView: View {
                                                 print("User has reached the bottom of the ScrollView.")
                                                 print(page)
                                             } else {
+                                                refresh += 1
                                                 print("not reached.")
                                             }
                                         }
@@ -189,6 +192,13 @@ struct BoardListView: View {
                 ImagePopUpView(showing: $showingImagePopUp, projectID: projectID)
             }//작물목록 title 다시 만들기
             .navigationBarHidden(true)
+            .onAppear {
+                boardListVM.boardListData = []
+                for i in 0 ... page {
+                    boardListVM.loadBoardList(projectID: projectID, page: i)
+                }
+                boardListVM.loadDeseaseCount(projectID: projectID)
+            }
         }
         .navigationBarHidden(true)
         .onAppear {
